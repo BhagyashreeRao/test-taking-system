@@ -1,0 +1,32 @@
+
+
+body{
+/*    padding-right: 0!important;
+    background-image: url('background.png') !important;
+    background-position: center center !important;
+    background-attachment: fixed;
+    background-repeat:repeat-y !important; 
+    background-size: cover !important;
+    -webkit-background-size: cover !important;
+    -moz-background-size: cover !important;
+    -o-background-size: cover!important;
+    background-repeat:repeat-y!important; */
+    color: black;
+/*    z-index: 1;*/
+}
+
+
+footer
+{ 
+  z-index: 1;
+  height: 70px;
+  background-color: #545454;
+  color: white;
+  position:relative;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 1rem;
+  text-align: center;
+  margin-top: 30vh;
+}

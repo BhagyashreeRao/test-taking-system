@@ -27,7 +27,7 @@ myApp.factory('Test', function($http) {
 		};
 		
 		//service to edit questions of a test
-		testFactory.editQuestion = function(question_id){
+		testFactory.editQuestion = function(question_id,updatedQuestion){
 			return $http.post('/test/question/edit/'+question_id,updatedQuestion);
 		};
 
@@ -36,8 +36,8 @@ myApp.factory('Test', function($http) {
 			return $http.post('/test/delete/'+test_id);
 		};
 
-		testFactory.deleteQuestion = function(question_id){
-			return $http.post('/test/question/delete/'+question_id);
+		testFactory.deleteQuestion = function(test_id,question_id){
+			return $http.post('/test/'+test_id+'/question/delete/'+question_id);
 		};
 
 		return testFactory;

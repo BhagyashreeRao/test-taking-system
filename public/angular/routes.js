@@ -2,7 +2,7 @@ myApp.config(['$routeProvider','$locationProvider', function($routeProvider,$loc
     $routeProvider
         .when('/',{
             // location of the template
-        	templateUrl		: 'angular/views/index-view.html',
+        	templateUrl		: './views/index-view.html',
         	// Which controller it should use 
             controller 		: 'mainCtrl',
             // what is the alias of that controller.
@@ -12,7 +12,7 @@ myApp.config(['$routeProvider','$locationProvider', function($routeProvider,$loc
         })
 
         .when('/user/dashboard',{
-            templateUrl     : 'angular/views/dashboard-view.html',
+            templateUrl     : './views/dashboard-view.html',
 
             controller      :  'dashboardCtrl',
 
@@ -22,7 +22,7 @@ myApp.config(['$routeProvider','$locationProvider', function($routeProvider,$loc
 
         })
         .when('/test/create',{
-            templateUrl     : 'angular/views/create-test-view.html',
+            templateUrl     : './views/create-test-view.html',
 
             controller      :  'testCtrl',
 
@@ -32,7 +32,7 @@ myApp.config(['$routeProvider','$locationProvider', function($routeProvider,$loc
 
         })
         .when('/test/:test_id',{
-            templateUrl     : 'angular/views/single-test-view.html',
+            templateUrl     : './views/single-test-view.html',
 
             controller      :  'singleTestCtrl',
 
@@ -43,14 +43,14 @@ myApp.config(['$routeProvider','$locationProvider', function($routeProvider,$loc
         })        
 
         .when('/logout',{
-            templateUrl     : 'angular/views/logout-view.html',
+            templateUrl     : './views/logout-view.html',
 
             authenticated   :   false
 
         })
 
         .when('/facebook/:token',{
-            templateUrl     : 'angular/views/facebook-view.html',
+            templateUrl     : './views/facebook-view.html',
             controller      :  'facebookCtrl',
             controllerAs    :  'facebook',
             //authenticated   :  true

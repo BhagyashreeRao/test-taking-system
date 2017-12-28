@@ -24,7 +24,7 @@ var logger = require('morgan');
 app.use(logger('dev'));
 
 
-var dbPath  = "mongodb://localhost/test-taking-systemDb";
+var dbPath  = "mongodb://localhost/testerDb";
 
 // command to connect with database
 db = mongoose.connect(dbPath);

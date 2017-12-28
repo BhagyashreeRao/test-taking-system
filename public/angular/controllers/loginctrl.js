@@ -81,7 +81,7 @@ myApp.controller('loginCtrl',['$http', '$location','$rootScope', '$timeout', 'Au
         this.reset=function(form,name){
             document.getElementById(name).reset();
             form.$setPristine();
-            //main.loginData={};
+            main.loginData={};
             form.$setUntouched();
             form.$submitted = false;
         };

@@ -1,4 +1,4 @@
-var myApp = angular.module('querizeApp',['ngRoute'])
+var myApp = angular.module('testingApp',['ngRoute'])
     .config(function ($httpProvider) {
   	$httpProvider.interceptors.push('AuthInterceptors');
 });

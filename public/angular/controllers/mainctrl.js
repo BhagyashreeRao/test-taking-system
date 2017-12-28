@@ -27,7 +27,8 @@ myApp.controller('mainCtrl',['$http', '$location', '$timeout', 'User', '$route',
                 } else {
                     main.loading = false; // Once data is retrieved, loading icon should be cleared
                     main.errorMsg = data.data.message; // Create an error message
-                     main.reset($scope.signupForm,"signupForm");
+                    main.reset($scope.signupForm,"signupForm");
+
                 }
             });
         };
@@ -42,7 +43,7 @@ myApp.controller('mainCtrl',['$http', '$location', '$timeout', 'User', '$route',
             this.reset=function(form,name){
             document.getElementById(name).reset();
             form.$setPristine();
-            //main.userData={};
+            main.userData={};
             form.$setUntouched();
             form.$submitted = false;
         };

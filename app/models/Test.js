@@ -8,6 +8,7 @@ var testSchema = new Schema({
   questions      :  [],
   duration       :  {type: Number},
   number_of_ques :  {type: Number , default:0},
+  marks_per_question : {type: Number , default:0},
   created_on     :  {type:Date,default:Date.now},
   last_updated_on:  {type:Date,default:Date.now}
 });

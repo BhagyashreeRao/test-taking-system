@@ -1,0 +1,164 @@
+<header style="padding-top: 10vh;" class="bounceInDown animated"> 
+<div class="header">
+    Test-taking-System
+</div>
+</header>
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<div class="container">
+  <div class="row">
+    <div class="col-md-offset-1 col-md-4 text-center wow slideInLeft animated">
+      <p>New here? Sign up to be a part of greatest knowledge sharing platform </p>
+      <button type="button" class="btn btn-lg btn-danger" data-toggle="modal" data-target="#modalSignupForm" style="margin-bottom: 50px;">
+      Sign up
+      </button>
+    </div>
+
+    <!--Signup Modal -->
+    <div class="modal rotateIn animated" id="modalSignupForm" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 class="modal-title" id="exampleModalLabel" style="color: black; text-align: center">Enter sign up  details
+          </h2>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+        <form name="signupForm" id="signupForm" ng-submit="main.signupUser(userData); main.windowAlert();">
+          <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" class="form-control" id="email" placeholder="Enter email" name="email" ng-model="main.userData.email" required="true">
+          </div>
+          <div class="form-group">
+            <label for="username">username:</label>
+            <input type="text" class="form-control" id="username" placeholder="Enter username" name="username" ng-model="main.userData.username" required="true" >
+          </div>
+          <div class="form-group">
+            <label for="mobilenumber">mobile number:</label>
+            <input type="number" class="form-control" id="mobilenumber" placeholder="Enter mobile number" name="mobilenumber" ng-model="main.userData.mobilenumber" required="true" >
+          </div>
+          <div class="form-group">
+            <label for="pwd">Password:</label>
+            <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pwd" ng-model="main.userData.password" required="true">
+          </div>
+
+          <button type="submit" class="btn btn-warning" >Sign Up!</button>
+
+        </form>
+
+
+  <br>
+
+        <!-- Loading Icon -->
+        <div class="jumbotron text-center" ng-show="main.loading" style="margin-right: 3%; margin-left: 3% ; background-color: gray;">
+          <span class="glyphicon glyphicon-repeat spinner"></span>
+          <p style="color: black">Loading....</p>
+        </div>
+        <!-- Loading Icon -->
+
+<br>
+
+        <!-- Successful Registration Message -->
+        <div class="row show-hide-message" ng-show="main.successMsg" style="margin-right: 3%; margin-left: 3%">
+          <div class="alert alert-success">{{ main.successMsg }}</div>
+        </div>
+       
+<br>
+
+        <!-- Failed Registration Message -->
+        <div class="row show-hide-message" ng-show="main.errorMsg" style="margin-right: 3%; margin-left: 3%">
+          <div class="alert alert-danger">{{ main.errorMsg }}</div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+
+
+    <div class="col-md-offset-1 col-md-4 text-center wow slideInRight animated" >
+      <p>Welcome back amigo! Login to start asking your questions or helping others with answers</p>
+      <button type="button" class="btn btn-lg btn-danger" data-toggle="modal" data-target="#modalLoginForm" style="margin-bottom: 50px;">
+      Login
+      </button>
+    </div>
+
+
+
+    <!--Login Modal -->
+    <div class="modal rotateIn animated" id="modalLoginForm" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h2 class="modal-title" id="exampleModalLabel1" style="color: black; text-align: center ">Enter login details
+            </h2>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form name="loginForm" id="loginForm" ng-submit="login.loginUser(loginData,loginForm.$valid); ">
+              <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" class="form-control" id="email" placeholder="Enter email" name="email" ng-model="login.loginData.email" required="true">
+              </div>
+
+              <div class="form-group">
+                <label for="pwd">Password:</label>
+                <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pwd" ng-model="login.loginData.password" required="true">
+              </div>
+
+
+              <button type="submit" class="btn btn-warning">Log in!</button>
+
+          </form>
+
+
+  <br>
+
+<!-- Loading Icon -->
+<div class="jumbotron text-center" ng-show="login.loading" style="margin-right: 3%; margin-left: 3%; background-color: gray;">
+    <span class="glyphicon glyphicon-repeat spinner"></span>
+    <p style="color: black;">Loading....</p>
+</div>
+<!-- Loading Icon -->
+
+<br>
+
+<!-- Successful Registration Message -->
+<div class="row show-hide-message" ng-show="login.successMsg" style="margin-right: 3%; margin-left: 3%">
+    <div class="alert alert-success">{{ login.successMsg }}</div>
+</div>
+<!-- Successful Registration Message -->
+
+<br>
+
+<!-- Failed Registration Message -->
+<div class="row show-hide-message" ng-show="login.errorMsg" style="margin-right: 3%; margin-left: 3%">
+    <div class="alert alert-danger">{{ login.errorMsg }}</div>
+</div>
+
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+<a ng-href="/auth/facebook" target="_blank">Facebook</a>
+<button class="btn btn-success" ng-click="login.facebook();" >Facebook</button>
+</div>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>

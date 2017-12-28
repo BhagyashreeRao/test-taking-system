@@ -7,6 +7,8 @@ var questionModel = mongoose.model('Question');
 
 var testRouter  = express.Router();
 
+var _ = require('lodash');
+
 var responseGenerator = require('./../../libs/responseGenerator');
 
 module.exports.controllerFunction = function(app) {
@@ -31,19 +33,17 @@ module.exports.controllerFunction = function(app) {
     //create a new test
     testRouter.post('/create',function(req,res){
 
-
         if(req.body.topic!=undefined && req.body.category!=undefined && req.body.duration!=undefined){
 
             var newTest = new testModel({
                 
                 topic               : req.body.topic,
                 category            : req.body.category,
-                duration            : req.body.duration
-
+                duration            : req.body.duration,
+                marks_per_question  : req.body.marks_per_question
 
             });// end new user 
             
-
             newTest.save(function(err,test){
                 if(err){
 
@@ -96,8 +96,8 @@ module.exports.controllerFunction = function(app) {
                  }
                 else{
                   //update the respective test model with new question
-                  testModel.findOneAndUpdate({'_id':req.params.test_id},{$inc:{'number_of_ques':1},$push: { "questions": question } },function(err,test){
-                    if(err){
+                  testModel.findOneAndUpdate({'_id':req.params.test_id},{$inc:{'number_of_ques':1},$push: { "questions": question } },function(error,test){
+                    if(error){
                         var myResponse = responseGenerator.generate(true,"test not found",400,null);
                         res.json(myResponse);
                     }
@@ -169,7 +169,7 @@ module.exports.controllerFunction = function(app) {
       questionModel.findOneAndUpdate({'_id':req.params.questionId},question_update,{new: true},function(err,question)
         {
         if(err){
-                var myResponse = responseGenerator.generate(true,"Could not update test! ",400,null);
+                var myResponse = responseGenerator.generate(true,"Could not edit question! ",400,null);
                 res.json(myResponse);
           }
 
@@ -194,63 +194,57 @@ module.exports.controllerFunction = function(app) {
                                 res.json(myResponse);
                                
                            }
-                         });
+                  });
             }
       }); 
     });
-/*              testModel.findOne({'_id':question.test_id},function(err,test){
-                if(err){
-                  var myResponse = responseGenerator.generate(true,"Could not find test! ",400,null);
-                  res.json(myResponse);                  
-                }
-                else{
-                  var index = -1;
-                  console.log(test);
-                  for(var i in test.questions)
-                  {
-                    if(test.questions[i]._id==req.params.questionId){
-                      index = i;
-                        
-                      
-                    }
-                  }
-                  console.log(index);                
-                }
-            });
-
-              var myResponse = responseGenerator.generate(false,"test updated ! ",200,question);
-              res.json(myResponse);*/
-
 
     // delete a question from test
-    testRouter.post('/question/delete/:questionId',function(req,res)
+    testRouter.post('/:test_id/question/delete/:questionId',function(req,res)
     {
-      questionModel.findOne({'_id':req.params.questionId},function(err,question)
-      {
-        if(err){
-              var myResponse = responseGenerator.generate(true,"Could not delete question! ",400,null);
-              res.json(myResponse);
-        }
-        else{
-            console.log(question);
-            testModel.findOneAndUpdate({'_id':question.test_id}, { $pull: { questions: { $elemMatch: { '_id':req.params.questionId}} } },{new:true},function(error,test)
-              { 
-                if(err){
-                      var myResponse = responseGenerator.generate(true,"Could not delete test with question!",400,null);
-                      res.json(myResponse);
+      testModel.findOne({'_id':req.params.test_id} ,function(error,test)
+        { console.log(req.params.questionId);
+            if(error){
+                console.log(error);
+                var myResponse = responseGenerator.generate(true,"Could not delete test with question!",400,null);
+                res.json(myResponse);
                 }
-                else{
-                      console.log(test);
-                      var myResponse = responseGenerator.generate(false,"Test updated!",200,test);
-                      res.json(myResponse);
+            else if(test==null || test ==undefined){
+                var myResponse = responseGenerator.generate(false,"No test found",200,null);
+                console.log(myResponse);
+                res.json(myResponse);
+                }    
+            else{
+                var questionIndex = _.findIndex(test.questions, function(o) { return o._id == req.params.questionId; });
+                test.questions.splice(questionIndex,1);
+                test.number_of_ques=test.number_of_ques-1;
 
-                }
-              });
+                //Save test
+                test.save(function(err){
+                    if(err){
+                        var myResponse = responseGenerator.generate(true,"Could not delete test question",err.code,null);
+                        console.log(myResponse);   
+                    } else{
+                        var myResponse = responseGenerator.generate(false,"Test question deleted",200,null);      
+                        console.log(myResponse);   
+                    }
+                  });
 
-        }
-
-      });
-      
+                questionModel.remove({'_id':req.params.questionId},function(err,question){
+                    if(err){
+                        var myResponse = responseGenerator.generate(true,err.message,err.code,null);
+                        console.log(myResponse);
+                        res.json(myResponse);
+                     }
+                    else
+                    {
+                        var myResponse = responseGenerator.generate(false,"Successfully deleted question",200,null);
+                        console.log(myResponse);
+                        res.json(myResponse);
+                    }
+                });//end remove
+            }
+        });
     });
 
     //delete a test

@@ -7,14 +7,15 @@
                 <p style="font-size: 20px;">Topic : {{singleTest.test.topic}}</p>
                 <p style="margin-bottom: 0;">Category : {{singleTest.test.category}}</p>
                 <p style="margin-bottom: 0;">Questions: {{singleTest.test.number_of_ques}}</p>
+                <p style="margin-bottom: 0;">Questions: {{singleTest.test.marks_per_question }}</p>
                 <p style="margin-bottom: 0;">Duration : {{singleTest.test.duration}} minutes</p>
             </div>    
             <div class="right">
                 <btn class="btn btn-primary" ng-click="singleTest.editTest=true;">edit test</btn>
             </div>
-        </div>    
-            <div ng-if="singleTest.editTest==true" class="container">
-
+        </div>  
+          
+          <div ng-if="singleTest.editTest==true" class="container">
             <form ng-submit="singleTest.getEditedTest();" class="card" style="padding:20px 10px 20px 10px; ">
                 <div class="form-group">
                   <label for="topic">Topic:</label>
@@ -27,14 +28,17 @@
                 <div class="form-group">
                   <label for="duration">Duration:</label>
                   <input type="number" class="form-control" id="duration" ng-model="singleTest.editedTest.duration" required ></input>
-                </div>                                                 
+                </div>     
+                <div class="form-group">
+                  <label for="marks">Marks per question:</label>
+                  <input type="number" class="form-control" id="marks" ng-model="singleTest.editedTest.marks_per_question" required ></input>
+                </div>                                              
                 <div class="text-center">
                 <button type="submit" class="btn btn-default">Submit</button>
                 </div>
             </form> 
           </div>
                                 
-    
         <div class="card">
           <div ng-repeat="question in singleTest.test.questions" style="padding:10px 40px 10px 30px;"> 
             <p>{{$index+1}}. {{question.question_desc}}</p>

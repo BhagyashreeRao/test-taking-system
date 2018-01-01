@@ -1,8 +1,8 @@
 var mongoose = require('mongoose');
+// declare schema object.
+var Schema = mongoose.Schema;
 
-var Schema   = mongoose.Schema;
-
-var bcrypt   = require('bcrypt-nodejs');
+var bcrypt=require('bcrypt-nodejs');
 
 var userSchema = new Schema({
   username     : 	{type: String , unique:true},
@@ -11,8 +11,6 @@ var userSchema = new Schema({
   password     : 	String,
   created_at   :  {type:Date,default:Date.now}
 });
-
-
 
 userSchema.pre('save', function(next) {
     var user = this;
@@ -23,11 +21,10 @@ userSchema.pre('save', function(next) {
     });
 });
 
-
 userSchema.methods.comparePassword = function(password) {
-    return bcrypt.compareSync(password,this.password);    
+    return bcrypt.compareSync(password,this.password);
+    
 };
-
 
 mongoose.model('User',userSchema);
 

@@ -41,7 +41,36 @@ myApp.config(['$routeProvider','$locationProvider', function($routeProvider,$loc
             authenticated   :   true
 
         })        
+        .when('/user/tests',{
+            templateUrl     : './views/test-menu-view.html',
 
+            controller      :  'dashboardCtrl',
+
+            controllerAs    :  'dashboard',
+
+            authenticated   :   true
+
+        })   
+        .when('/user/test/:test_id',{
+            templateUrl     : './views/test-instruction-view.html',
+
+            controller      :  'takeTestCtrl',
+
+            controllerAs    :  'takeTest',
+
+            authenticated   :   true
+
+        })
+        .when('/:user_id/take-test/:test_id',{
+            templateUrl     : './views/take-test-view.html',
+
+            controller      :  'takeTestCtrl',
+
+            controllerAs    :  'takeTest',
+
+            authenticated   :   true
+
+        })          
         .when('/logout',{
             templateUrl     : './views/logout-view.html',
 
@@ -64,9 +93,9 @@ myApp.config(['$routeProvider','$locationProvider', function($routeProvider,$loc
         });
 
         $locationProvider.html5Mode({
-            enabled:true,
-            requireBase: false
-        }).hashPrefix();
+          enabled: true,
+          requireBase: false,
+        }).hashPrefix('');
 
 }]);
 
@@ -105,7 +134,7 @@ myApp.run(['$rootScope','Auth','$location',function($rootScope,Auth,$location){
                     Auth.getUser().then(function(data){
 
                         //If error
-                        if(!data.data.error){
+                            if(!data.data.error){
                             event.preventDefault();
                             $location.path('/user/dashboard');
                         }          

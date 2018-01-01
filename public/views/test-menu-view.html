@@ -1,0 +1,17 @@
+<div class="card container">
+	<p class="text-center"> Take a test </p>
+	<hr>
+	<div style="padding: 2% 2% 2% 2%;">
+    	<div class="card container-fluid" style="padding:10px 30px 10px 30px;" ng-repeat="test in dashboard.allTests">
+	        <div class="left">
+	            <p style="font-size: 20px;"> Topic : {{test.topic}}</p>
+	            <p style="margin-bottom: 0;">Category : {{test.category}}</p>
+	            <p style="margin-bottom: 0;">Questions: {{test.number_of_ques}}</p>
+	            <p style="margin-bottom: 0;">Duration : {{test.duration}}</p>
+	        </div>    
+            <div class="right">
+                <a ng-href="/user/test/{{test._id}}" class="btn btn-primary">Take test</a>
+            </div>                                
+        </div>    
+    </div>
+</div

@@ -102,7 +102,7 @@ module.exports.controllerFunction = function(app) {
                 res.json(myResponse);
               }
               else{
-                var token=jwt.sign({username:user.username,email:user.email},secret,{expiresIn:'24h'});
+                var token=jwt.sign({username:user.username,email:user.email,user_id:user._id},secret,{expiresIn:'24h'});
                 var myResponse = responseGenerator.generate(false,"User authenticated ! ",201,token);
                 res.json(myResponse);
               }
@@ -117,7 +117,7 @@ module.exports.controllerFunction = function(app) {
         jwt.verify(token,secret,function(err,decoded){
           if(err){
             var myResponse = responseGenerator.generate(true,"Token invalid ! ",500,null);
-         res.json(myResponse);
+            res.json(myResponse);
           } 
           else{
           
@@ -135,6 +135,7 @@ module.exports.controllerFunction = function(app) {
     userRouter.post('/getuser',function(req,res){
 
       res.send(req.decoded);
+      
     });
     // this should be the last line
     // now making it global to app using a middleware

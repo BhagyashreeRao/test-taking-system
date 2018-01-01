@@ -1,9 +1,4 @@
-<!--   <p>This is dashboard</p>
-  <br>
-  <br>
-<a ng-click="login.logout();" style="margin-right: 30px;">Logout</a>
--->
-<div ng-if="login.isAdmin==true"> 
+<div ng-if="login.isAdmin"> 
     <div class="wrapper">
     <div class="sidebar" data-color="purple" data-image="assets/img/sidebar-5.jpg">
 
@@ -152,34 +147,13 @@
                     </ul>
                 </div>
             </div>
-        </nav>
-
+        </nav>  
 
         <div class="content">
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-12">
                         <div class="card" style="padding: 2% 2% 2% 2%;">
-
-                      <!--  <div class="header">
-                                <h4 class="title">Email Statistics</h4>
-                                <p class="category">Last Campaign Performance</p>
-                            </div>
-                            <div class="content">
-                                <div id="chartPreferences" class="ct-chart ct-perfect-fourth"></div>
-
-                                <div class="footer">
-                                    <div class="legend">
-                                        <i class="fa fa-circle text-info"></i> Open
-                                        <i class="fa fa-circle text-danger"></i> Bounce
-                                        <i class="fa fa-circle text-warning"></i> Unsubscribe
-                                    </div>
-                                    <hr>
-                                    <div class="stats">
-                                        <i class="fa fa-clock-o"></i> Campaign sent 2 days ago
-                                    </div>
-                                </div>
-                            </div> -->
                             <div class="card container-fluid" style="padding:10px 30px 10px 30px;" ng-repeat="test in dashboard.allTests">
                             <div class="left">
                                 <p style="font-size: 20px;">Topic : {{test.topic}}</p>
@@ -246,12 +220,20 @@
                             </div>
                         </div>
                     </div>
-
-                    
                 </div>
             </div>
         </div>
     </div>
 </div>
 
+</div>
+
+<!-- Dashboard user view -->
+<div ng-if ="!login.isAdmin">
+    <a href="" ng-click="login.logout();">
+        <p>Log out</p>
+    </a>
+    <div class="card">
+        <a class="btn btn-primary" ng-href="/user/tests">Take a test</a>
+    </div>
 </div>

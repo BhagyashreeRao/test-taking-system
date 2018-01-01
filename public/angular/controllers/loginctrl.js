@@ -1,6 +1,6 @@
 myApp.controller('loginCtrl',['$http', '$location','$rootScope', '$timeout', 'Auth','AuthToken', '$route','$scope','$window', function($http, $location,$rootScope, $timeout, Auth,AuthToken,$route,$scope,$window) {
  
-
+          console.log("login controller");  
           var main = this;
           this.loadme=false;
           this.isAdmin=false;
@@ -10,30 +10,34 @@ myApp.controller('loginCtrl',['$http', '$location','$rootScope', '$timeout', 'Au
         $rootScope.$on('$routeChangeStart',function(){
         if(Auth.isLoggedIn())
         {
-        	//console.log("Success:User is logged in.");
+        	console.log("Success:User is logged in.");
         	Auth.getUser().then(function(data){
-        		
-        		main.username=data.data.username;
-                main.email=data.data.email;
-                if(data.data.username=='admin' || data.data.username=='ADMIN')
-                {
-                    main.isAdmin=true;
-                    
-                }
-                main.loadme=true;
+        	        console.log(data);
+                    main.isLoggedIn=true;
+            		main.username=data.data.username;
+                    main.email=data.data.email;
+                    main.user_id=data.data.user_id;
+                    if(data.data.username=='admin' || data.data.username=='ADMIN')
+                    {
+                        main.isAdmin=true;
+                        
+                    }
+                    main.loadme=true;
+                
+
         	});
         }
         else{
         	
             main.isLoggedIn=false;
-            //console.log("failure:User not logged in");
+            console.log("failure:User not logged in");
         	main.username='';
 
         }
         if($location.hash()=="_=_")
-        {
-            $location.hash(null);
-        }
+            {
+                $location.hash(null);
+            }
         });  
 
         this.facebook=function(){

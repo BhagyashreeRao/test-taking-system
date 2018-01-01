@@ -4,6 +4,8 @@ var express= require('express');
 var userModel = mongoose.model('User');
 var testModel = mongoose.model('Test');
 var questionModel = mongoose.model('Question');
+var answerModel = mongoose.model('Answer');
+var resultModel = mongoose.model('Result');
 
 var testRouter  = express.Router();
 
@@ -23,7 +25,6 @@ module.exports.controllerFunction = function(app) {
 
               var myResponse = responseGenerator.generate(false,"All tests ! ",200,tests);
               res.json(myResponse);
-
             }
 
         });//end test model find 
@@ -66,10 +67,9 @@ module.exports.controllerFunction = function(app) {
        
     });//end test creation
 
+
     //Create questions for a test
     testRouter.post('/:test_id/question/create',function(req,res){
-
-
         if(req.body.question_desc!=undefined && req.body.optA!=undefined && req.body.optB!=undefined && req.body.optC!=undefined && req.body.optD!=undefined && req.body.answer!=undefined){
 
             var newQuestion = new questionModel({
@@ -166,35 +166,35 @@ module.exports.controllerFunction = function(app) {
       {
         var question_update=req.body;
 
-      questionModel.findOneAndUpdate({'_id':req.params.questionId},question_update,{new: true},function(err,question)
-        {
-        if(err){
+        questionModel.findOneAndUpdate({'_id':req.params.questionId},question_update,{new: true},function(err,question)
+          {
+          if(err){
                 var myResponse = responseGenerator.generate(true,"Could not edit question! ",400,null);
                 res.json(myResponse);
-          }
+            }
 
-        else{
+          else{
 
-                      console.log(question_update);
-                      console.log(question);
-                      //console.log(req.params.questionId);
-                       testModel.findOneAndUpdate(
-                         {'_id': question.test_id,
-                           'questions' : { $elemMatch: { '_id':question._id}}
-                         },
-                         { $set: { 'questions.$' : question } },{new: true },function(error,result){
-                           if(error)
-                           {
-                                var myResponse = responseGenerator.generate(true,"Could not update test with question! ",400,null);
-                                res.json(myResponse);
-                           }
-                           else{
-                                console.log(req.params.questionId);
-                                var myResponse = responseGenerator.generate(false,"Test updated !",200,result);
-                                res.json(myResponse);
-                               
-                           }
-                  });
+               console.log(question_update);
+               console.log(question);
+               //console.log(req.params.questionId);
+               testModel.findOneAndUpdate(
+                 {'_id': question.test_id,
+                   'questions' : { $elemMatch: { '_id':question._id}}
+                 },
+                 { $set: { 'questions.$' : question } },{new: true },function(error,result){
+                   if(error)
+                   {
+                        var myResponse = responseGenerator.generate(true,"Could not update test with question! ",400,null);
+                        res.json(myResponse);
+                   }
+                   else{
+                        console.log(req.params.questionId);
+                        var myResponse = responseGenerator.generate(false,"Test updated !",200,result);
+                        res.json(myResponse);
+                       
+                   }
+                });
             }
       }); 
     });
@@ -262,6 +262,44 @@ module.exports.controllerFunction = function(app) {
         }
       });
     });
+
+    //save an answer
+    testRouter.post('/:test_id/:question_id/answer',function(req,res){
+      if(req.body.correctAnswer!=undefined && req.body.givenAnswer!=undefined && req.body.question!=undefined){
+
+            var newAnswer = new answerModel({
+                
+                test_id             : req.params.test_id ,
+                question_id         : req.params.question_id,
+                user_id             : req.body.user_id,
+                question            : req.body.question,
+                correctAnswer       : req.body.correctAnswer,
+                givenAnswer         : req.body.givenAnswer,
+              
+               });// end new user 
+            
+            //add answer to answer model
+            newAnswer.save(function(err,newAnswer){
+                if(err){
+
+                    var myResponse = responseGenerator.generate(true,"Can't save this Answer!",400,null);
+                    //res.json({ success: false, message: 'Username or Email already exists!' }); // Cannot save if username or email exist in the database
+                    res.json(myResponse);
+                 }
+                else{
+                  //update the respective test model with new question
+                    var myResponse = responseGenerator.generate(false,"answer created successfully ! ",201,newAnswer);
+                    res.json(myResponse);
+                    }
+              });//end new test save
+            }
+        else{
+          
+           var myResponse = responseGenerator.generate(true,"Ensure all fields are provided properly ! ",400,null);
+              res.json(myResponse);
+
+        }
+    });//end save answer
 
     // this should be the last line
     // now making it global to app using a middleware

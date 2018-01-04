@@ -36,7 +36,9 @@ app.use(cors({
 
 
 
-var dbPath  = "mongodb://localhost/testerDb";
+var dbPath  = "mongodb://bhagyashreerao:bhagyashree26@ds239387.mlab.com:39387/tester-db";
+
+/*mongodb://bhagyashreerao:bhagyashree26@ds239387.mlab.com:39387/tester-db*/
 
 // command to connect with database
 db = mongoose.connect(dbPath);

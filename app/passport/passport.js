@@ -38,7 +38,7 @@ module.exports=function(app,passport){
 		passport.use(new FacebookStrategy({
 		    clientID: '308757226282671',
 		    clientSecret: 'bdba027fe4aab20d11a446d546453acd',
-		    callbackURL: "http://localhost:3000/auth/facebook/callback",
+		    callbackURL: "https://my-tester-100.herokuapp.com/auth/facebook/callback",
 		    profileFields: ['id', 'displayName','email']
 
 		  },
@@ -70,7 +70,7 @@ module.exports=function(app,passport){
 		passport.use(new GoogleStrategy({
 		    clientID: '828881026786-agqjndspaphl3macd10i7m5t2nffciei.apps.googleusercontent.com',
 		    clientSecret: 'Li99IqWKVJlWlogQLj7CVANz',
-		    callbackURL: "http://localhost:3000/auth/google/callback"
+		    callbackURL: "https://my-tester-100.herokuapp.com/auth/google/callback"
 		  },
   		function(accessToken, refreshToken, profile, done) {
   			console.log(profile);

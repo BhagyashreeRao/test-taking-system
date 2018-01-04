@@ -1,4 +1,4 @@
-exports.sendMail = function(from,to,subject,text,html){
+exports.send = function(from,to,subject,text,html){
 	var nodemailer = require('nodemailer');
 	var smtpTransport = require('nodemailer-smtp-transport');
 	
@@ -7,10 +7,10 @@ exports.sendMail = function(from,to,subject,text,html){
 	   service: 'Gmail',
 	   auth: {
 		   //Enter email here
-	       user: '!!!YOUR EMAIL!!!',
+	       user: 'kbhagyashree.rao@gmail.com',
 
 		   //Enter your password here
-	       pass: '!!!YOUR GMAIL PASSWORD!!!'
+	       pass: 'shreekrishna26'
 	   }
 	}));
     //Send mail

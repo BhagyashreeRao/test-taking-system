@@ -1,0 +1,145 @@
+<nav class="navbar navbar-fixed-top custom-navbar">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" style="background-color: red;" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+      <a class="navbar-brand" href="">TESTER</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="#/user/dashboard">Dashboard</a></li>
+        <li><a href="#">Page 2</a></li>
+
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <!-- <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li> -->
+        <li>    
+        <a href="" ng-click="login.logout();">
+        <p>Log out</p>
+        </a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<div ng-if="login.isAdmin==true">
+        <div class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card" style="padding: 2% 2% 2% 2%;">
+                            <div class="card container-fluid" style="padding:10px 30px 10px 30px;" ng-repeat="test in dashboard.allTests">
+                            <div class="left">
+                                <p style="font-size: 20px;">Topic : {{test.topic}}</p>
+                                <p style="margin-bottom: 0;">Category : {{test.category}}</p>
+                                <p style="margin-bottom: 0;">Questions: {{test.number_of_ques}}</p>
+                                <p style="margin-bottom: 0;">Duration : {{test.duration}}</p>
+                            </div>    
+                                <div class="right">
+                                    <a ng-href="/test/{{test._id}}" class="btn btn-primary">View test</a>
+                                </div>                                
+                            </div>    
+                            <div class="text-center">
+                            <a ng-href="/test/create" class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span>Add new test</a>
+                            </div>
+                        </div>
+                    </div>
+                </div> 
+            </div>
+        </div> 
+</div>
+<div ng-if="login.isAdmin==false" class="user-dashboard-section">
+    <div class="card container text-center">
+        <h3 style="padding-top: 20px;">My stats</h3>
+        <hr>
+
+      <div id="user-stats">
+        <div class="wow fadeIn">
+          <div class="row">
+            <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.2s">
+              <div class="box">
+                <div class="icon"><i class="fa fa-desktop"></i></div>
+                <!-- <h4 class="title"><a href=""></a></h4> -->
+                <h4 class="title">Tests taken</h4>
+             
+                <p>{{dashboard.testsTaken}}</p>
+                
+
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.4s">
+            <div class="box">
+              <div class="icon"><i class="fa fa-bar-chart"></i></div>
+              <h4 class="title">Average percentage</h4>
+              <p>{{dashboard.avgPercentage}}</p>
+
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.6s">
+            <div class="box">
+              <div class="icon"><i class="fa fa-paper-plane"></i></div>
+              <h4 class="title">Average time</h4>
+              <p>{{dashboard.avgTime}} minutes</p>
+
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.2s">
+            <div class="box">
+              <div class="icon"><i class="fa fa-photo"></i></div>
+              <h4 class="title">Unattempted Questions</h4>
+              <p>{{dashboard.unattempted}}</p>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.4s">
+            <div class="box">
+              <div class="icon"><i class="fa fa-road"></i></div>
+              <h4 class="title">Correct answers</h4>
+              <p>{{dashboard.correctAnswers}}</p>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.6s">
+            <div class="box">
+              <div class="icon"><i class="fa fa-shopping-bag"></i></div>
+              <h4 class="title">Incorrect answers</h4>
+              <p>{{dashboard.incorrectAnswers}}</p>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+      </div>
+    </div>
+    <div id="myTests">
+    <center><p style="font-weight: bolder; font-size: 25px; ">My tests </p></center>
+    <hr style="width: 70%;">
+      <table class="table table-striped text-center" id="test-table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Test name</th>
+            <th scope="col">Date</th>
+            <th scope="col">Marks</th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="result in dashboard.user_results">
+            <td>{{$index+1}}</td>
+            <td>{{result.test_name}}</td>
+            <td>{{result.createdAt| date : "MMM d, y 'at' h:mma"}}</td>
+            <td>{{result.marksScored}}/{{result.testScore}}</td>
+            <td><a  href="#/show-result/{{result._id}}">View result</a></td>
+          </tr>
+         
+        </tbody>
+      </table>
+      <hr style="width: 70%;">
+      <center><a class="btn btn-danger btn-lg btn-block" ng-href="#/user/tests" style="width: 50%;">Take a test</a></center>
+    </div>   
+    <!-- <a class="btn btn-primary" ng-href="#/user/tests">Take a test</a> -->
+</div>

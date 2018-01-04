@@ -15,7 +15,7 @@ var resultSchema = new Schema({
 	unattempted       : {type:Number,default:0,required:true},
 	timeTaken         : {type:Number},
     createdAt         : {type:Date,default:Date.now()}
-
+    
 });
 
 mongoose.model('Result',resultSchema);

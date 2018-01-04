@@ -40,6 +40,23 @@ myApp.factory('Test', function($http) {
 			return $http.post('/test/'+test_id+'/question/delete/'+question_id);
 		};
 
+		testFactory.postAnswer = function(test_id,question_id,answerData){
+			return $http.post('/test/'+test_id+'/'+question_id+'/answer',answerData);
+		};
+
+		testFactory.postResult = function(test_id,resultData){
+			return $http.post('/test/'+test_id+'/result',resultData);
+		};
+
+		testFactory.getUserStats = function(user){
+			console.log(user);
+			return $http.post('/stats/user-stats',user);
+		};
+
+		testFactory.getResult = function(result_id){
+			return $http.get('/stats/result/'+result_id);
+		};		
+
 		return testFactory;
 	});
 

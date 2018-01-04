@@ -10,7 +10,7 @@
 	            <p style="margin-bottom: 0;">Duration : {{test.duration}}</p>
 	        </div>    
             <div class="right">
-                <a ng-href="/user/test/{{test._id}}" class="btn btn-primary">Take test</a>
+                <button ng-click="dashboard.takeTest(login.user_id,test._id);" class="btn btn-primary">Take test</button>
             </div>                                
         </div>    
     </div>

@@ -44,6 +44,11 @@ myApp.controller('loginCtrl',['$http', '$location','$rootScope', '$timeout', 'Au
             $window.location=$window.location.protocol+'//'+$window.location.host+'/auth/facebook';
         };
 
+        this.google=function(){
+            console.log('google');
+            $window.location=$window.location.protocol+'//'+$window.location.host+'/auth/google';
+        };
+
         // Function to submit form and register account
         this.loginUser = function(loginData,valid) {
           

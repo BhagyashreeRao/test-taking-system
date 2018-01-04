@@ -23,6 +23,10 @@ myApp.factory('Auth', function($http,AuthToken) {
 			AuthToken.setToken(token);
 		};
 
+		authFactory.google= function(token){
+			AuthToken.setToken(token);
+		};
+
 		authFactory.getUser=function(){
 			if(AuthToken.getToken()){
 				return $http.post("/user/getuser");

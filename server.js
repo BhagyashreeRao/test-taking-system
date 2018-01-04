@@ -10,7 +10,6 @@ var path=require('path');
 var port = process.env.PORT || 3000;
 var cors = require('cors');
 
-
 var passport = require('passport');
 var socialAuth=require('./app/passport/passport')(app,passport);
 

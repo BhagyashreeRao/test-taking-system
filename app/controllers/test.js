@@ -265,7 +265,8 @@ module.exports.controllerFunction = function(app) {
 
     //save an answer
     testRouter.post('/:test_id/:question_id/answer',function(req,res){
-      if(req.body.correctAnswer!=undefined && req.body.givenAnswer!=undefined && req.body.question!=undefined){
+      console.log(req.body);
+      if(req.body.correctAnswer!=undefined && req.body.question_id!=undefined){
 
             var newAnswer = new answerModel({
                 
@@ -275,6 +276,7 @@ module.exports.controllerFunction = function(app) {
                 question            : req.body.question,
                 correctAnswer       : req.body.correctAnswer,
                 givenAnswer         : req.body.givenAnswer,
+                timeTaken           : req.body.timeTaken
               
                });// end new user 
             
@@ -300,6 +302,47 @@ module.exports.controllerFunction = function(app) {
 
         }
     });//end save answer
+
+    testRouter.post('/:test_id/result',function(req,res){
+      if(req.body.test_id!=undefined && req.body.test_name!=undefined&&req.body.user_id!=undefined&&req.body.testScore!=undefined&&req.body.marksScored!=undefined&&req.body.correctAnswers!=undefined&&req.body.incorrectAnswers!=undefined&&req.body.timeTaken!=undefined)
+      {
+        var result=new resultModel({
+              test_id           : req.body.test_id,
+              test_name         : req.body.test_name,
+              user_id           : req.body.user_id,
+              testScore         : req.body.testScore,
+              marksScored       : req.body.marksScored,
+              testPercentage    : req.body.testPercentage,
+              correctAnswers    : req.body.correctAnswers,
+              incorrectAnswers  : req.body.incorrectAnswers,
+              unattempted       : req.body.unattempted,
+              timeTaken         : req.body.timeTaken
+        });
+
+        result.save(function(err,result){
+          if(err){
+
+              var myResponse = responseGenerator.generate(true,"Can't save this result!",400,null);
+              //res.json({ success: false, message: 'Username or Email already exists!' }); // Cannot save if username or email exist in the database
+              res.json(myResponse);
+           }
+          else{
+            //update the respective test model with new question
+                var myResponse = responseGenerator.generate(false,"result created successfully ! ",201,result);
+                res.json(myResponse);
+              }
+        });//end new test save
+
+      }
+      else{
+          
+           var myResponse = responseGenerator.generate(true,"Ensure all fields are provided properly ! ",400,null);
+              res.json(myResponse);
+
+      }
+
+    });
+
 
     // this should be the last line
     // now making it global to app using a middleware

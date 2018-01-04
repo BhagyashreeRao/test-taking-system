@@ -10,5 +10,23 @@ myApp.factory('User', function($http,AuthToken) {
 			}); // Return data from end point to controller
 		};
 
+		userFactory.getEmailForReset = function(email){
+			console.log('service called');
+			console.log(email);
+			return $http.put('/reset/resetPassword',email);
+		};
+
+		userFactory.resetUser = function(token){
+			return $http.get('/reset/resetPassword/'+token);
+		};
+
+		userFactory.saveNewPassword = function(resetData){
+			return $http.put('/reset/savePassword',resetData);
+		};
+/*		testFactory.editTest = function(test_id,updatedTest){
+			return $http.post('/test/edit/'+test_id,updatedTest);
+		};*/
+		
+
 		return userFactory;
 	});

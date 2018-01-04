@@ -1,0 +1,50 @@
+<div class="card container">
+	<center><a ng-href="#/user/dashboard" style="font-size: 20px; color: #2FBBFF;"> &#8617; Back to dashboard</a></center>
+	<hr>
+	<p class="text-center"> My result </p>
+	<hr>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-8 col-md-offset-2">
+				<table class="table">
+				  <tr>
+				    <th>Test Name</th>
+				    <td>:</td>
+				    <td>{{result.result.test_name}}</td>
+				  </tr>
+				  <tr>
+				    <th>Taken at:</th>
+				    <td>:</td>
+				    <td>{{result.result.createdAt | date : "MMM d, y 'at' h:mma"}}</td>
+				  </tr>
+				  <tr>
+				    <th>Scores:</th>
+				    <td>:</td>
+				    <td>{{result.result.marksScored}} out of {{result.result.testScore}}</td>
+				  </tr>
+				  <tr>
+				    <th>Percentage:</th>
+				    <td>:</td>
+				    <td>{{result.result.testPercentage}}</td>
+				  </tr>
+				  <tr>
+				    <th>Correct Answers:</th>
+				    <td>:</td>
+				    <td>{{result.result.correctAnswers}}</td>
+				  </tr>
+				  <tr>
+				    <th>Incorrect Answers:</th>
+				    <td>:</td>
+				    <td>{{result.result.incorrectAnswers}}</td>
+				  </tr>	
+				  <tr>
+				    <th>Unattempted questions:</th>
+				    <td>:</td>
+				    <td>{{result.result.unattempted}}</td>
+				  </tr>					  			  
+				</table>
+
+			</div>	
+   		</div>
+    </div>
+</div

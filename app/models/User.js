@@ -9,7 +9,8 @@ var userSchema = new Schema({
   email        : 	{type: String ,unique:true},
   mobilenumber :  {type: Number}, 
   password     : 	String,
-  created_at   :  {type:Date,default:Date.now}
+  created_at   :  {type:Date,default:Date.now},
+  resetToken   :  {type:String}
 });
 
 userSchema.pre('save', function(next) {

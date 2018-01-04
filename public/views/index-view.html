@@ -1,17 +1,15 @@
-<header style="padding-top: 10vh;" class="bounceInDown animated"> 
+
+<header class="bounceInDown animated"> 
 <div class="header">
-    Test-taking-System
+  <p class="headline">TESTER</p>
 </div>
 </header>
-
+<div class="about text-center custom-bg">
+  <p>Want to test yourself for your skills and want to show off your score? Well, you're at the right place. We have the bests test for all the domains, which are developed by the domain experts. We give you the detailed anaysis of the tests you give using graphs.So, let's get started!</p>
 <br>
 <br>
-<br>
-<br>
-<br>
-<div class="container">
-  <div class="row">
-    <div class="col-md-offset-1 col-md-4 text-center wow slideInLeft animated">
+  <div class="row ">
+    <div class="col-md-6 text-center wow slideInLeft animated">
       <p>New here? Sign up to be a part of greatest knowledge sharing platform </p>
       <button type="button" class="btn btn-lg btn-danger" data-toggle="modal" data-target="#modalSignupForm" style="margin-bottom: 50px;">
       Sign up
@@ -85,7 +83,7 @@
 
 
 
-    <div class="col-md-offset-1 col-md-4 text-center wow slideInRight animated" >
+    <div class="col-md-6 text-center wow slideInRight animated" >
       <p>Welcome back amigo! Login to start asking your questions or helping others with answers</p>
       <button type="button" class="btn btn-lg btn-danger" data-toggle="modal" data-target="#modalLoginForm" style="margin-bottom: 50px;">
       Login
@@ -121,44 +119,58 @@
               <button type="submit" class="btn btn-warning">Log in!</button>
 
           </form>
+          <br>
+
+          <div style="float-left">
+            <a href="#/resetpassword">Forgot password?</a>
+          </div>
 
 
   <br>
 
-<!-- Loading Icon -->
-<div class="jumbotron text-center" ng-show="login.loading" style="margin-right: 3%; margin-left: 3%; background-color: gray;">
-    <span class="glyphicon glyphicon-repeat spinner"></span>
-    <p style="color: black;">Loading....</p>
-</div>
-<!-- Loading Icon -->
-
-<br>
-
-<!-- Successful Registration Message -->
-<div class="row show-hide-message" ng-show="login.successMsg" style="margin-right: 3%; margin-left: 3%">
-    <div class="alert alert-success">{{ login.successMsg }}</div>
-</div>
-<!-- Successful Registration Message -->
-
-<br>
-
-<!-- Failed Registration Message -->
-<div class="row show-hide-message" ng-show="login.errorMsg" style="margin-right: 3%; margin-left: 3%">
-    <div class="alert alert-danger">{{ login.errorMsg }}</div>
-</div>
-
+      <!-- Loading Icon -->
+      <div class="jumbotron text-center" ng-show="login.loading" style="margin-right: 3%; margin-left: 3%; background-color: gray;">
+          <span class="glyphicon glyphicon-repeat spinner"></span>
+          <p style="color: black;">Loading....</p>
       </div>
-    </div>
-  </div>
-</div>
-</div>
-<a ng-href="/auth/facebook" target="_blank">Facebook</a>
-<button class="btn btn-success" ng-click="login.facebook();" >Facebook</button>
-</div>
+      <!-- Loading Icon -->
+
 <br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
+
+      <!-- Successful Registration Message -->
+      <div class="row show-hide-message" ng-show="login.successMsg" style="margin-right: 3%; margin-left: 3%">
+          <div class="alert alert-success">{{ login.successMsg }}</div>
+      </div>
+      <!-- Successful Registration Message -->
+
+      <br>
+
+      <!-- Failed Registration Message -->
+      <div class="row show-hide-message" ng-show="login.errorMsg" style="margin-right: 3%; margin-left: 3%">
+          <div class="alert alert-danger">{{ login.errorMsg }}</div>
+      </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+      <div class="row text-center">
+        <div class="col-md-12"><span>-------or-------</span></div>
+          <div class="col-md-6 col-md-offset-3">
+            Login with : 
+            <button class="btn btn-lg btn-success " ng-click="login.facebook();" >Facebook</button>
+            <button class="btn btn-lg btn-success" ng-click="login.google();" >Gmail</button>
+          </div>
+
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+        </div>
+      </div>
+      
+      </div>

@@ -8,7 +8,7 @@ var answerSchema = new Schema({
     user_id            : {type:String,default:'',required:true},
     question_id        : {type:String,default:'',required:true},
 	question           : {type:String,default:'',required:true},
-	givenAnswer        : {type:String,default:'',required:true},
+	givenAnswer        : {type:String,default:''},
     correctAnswer      : {type:String,default:'',required:true},
 	timeTaken          : {type:Number,default:'',required:true},
     createdAt          : {type:Date,default:Date.now()}

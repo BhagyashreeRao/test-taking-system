@@ -12,7 +12,7 @@ myApp.config(['$routeProvider','$locationProvider', function($routeProvider,$loc
         })
 
         .when('/user/dashboard',{
-            templateUrl     : './views/dashboard-view.html',
+            templateUrl     : './views/dashboard-view4.html',
 
             controller      :  'dashboardCtrl',
 
@@ -69,8 +69,14 @@ myApp.config(['$routeProvider','$locationProvider', function($routeProvider,$loc
             controllerAs    :  'takeTest',
 
             authenticated   :   true
+        })      
+        .when('/show-result/:result_id',{
+            templateUrl     : './views/result-view.html',
+            controller      : 'resultCtrl',
+            controllerAs    : 'result',
+            authenticated   :  true
+        })
 
-        })          
         .when('/logout',{
             templateUrl     : './views/logout-view.html',
 
@@ -82,21 +88,46 @@ myApp.config(['$routeProvider','$locationProvider', function($routeProvider,$loc
             templateUrl     : './views/facebook-view.html',
             controller      :  'facebookCtrl',
             controllerAs    :  'facebook',
-            //authenticated   :  true
 
         })
 
+        .when('/google/:token',{
+            templateUrl     : './views/gmail-view.html',
+            controller      :  'googleCtrl',
+            controllerAs    :  'google',
+      
+        })
+        .when('/facebookerror',{
+            templateUrl     : './views/facebook-error-view.html',
+            controller      :  'facebookCtrl',
+            controllerAs    :  'facebook',
+        })        
+        .when('/googleerror',{
+            templateUrl     : './views/google-error-view.html',
+            controller      :  'googleCtrl',
+            controllerAs    :  'google',
+        })
+        .when('/resetpassword',{
+            templateUrl     : './views/reset-password-view.html',
+            controller      :  'resetCtrl',
+            controllerAs    :  'reset',
+        })
+        .when('/reset/:token',{
+            templateUrl     : './views/new-password-view.html',
+            controller      : 'setPasswordCtrl',
+            controllerAs    : 'setPassword'
+        })
         .otherwise({
             //redirectTo:'/'
             template   : '<h2>404 page not found</h2>'
 
         });
 
-        $locationProvider.html5Mode({
+/*        $locationProvider.html5Mode({
           enabled: true,
           requireBase: false,
         }).hashPrefix('');
-
+*/
 }]);
 
 

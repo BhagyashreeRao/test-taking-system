@@ -141,42 +141,36 @@ module.exports.controllerFunction = function(app) {
       
     });
 
-/*      userRouter.put('/resetPassword',function(req,res){
-      console.log(req.body);
-      userModel.findOne({email:req.body.email}).select('username email resetToken name').exec(function(err,user){
-        if(err)
-        {
-          var myResponse = responseGenerator.generate(true,"some error occured : "+err,500,null);
-          res.json(myResponse);
-        }
-        else if(!user){
-         var myResponse = responseGenerator.generate(true,"No user with that email! ",500,null);
-         res.json(myResponse);
+    userRouter.post('/delete/:userId',function(req,res)
+    {
+      userModel.remove({'_id':req.params.testId},function(err,result)
+      {
+        if(err){
+              var myResponse = responseGenerator.generate(true,"Could not delete this user! ",400,null);
+              res.json(myResponse);
         }
         else{
-          console.log('reset');
-          user.resetToken = jwt.sign({email:user.email},secret,{expiresIn:'1h'});
-          user.save(function(err){
-            if(err){
-              var myResponse = responseGenerator.generate(true,"Cannot process change password request ! ",500,null);
+              var myResponse = responseGenerator.generate(false,"User removed !",200,null);
               res.json(myResponse);
-            }
-            else{
-              console.log(user);
-              var name = user.username;
-              var text='Hi! '+name+'You recently requested to change your password.Please click on the link below to change your password - http://localhost:3000/#/reset/'+user.resetToken;
-              var html='Hi! '+name+'You recently requested to change your password.Please click on the link below to change your password - <a href="http://localhost:3000/#/reset/' + user.resetToken+'">http://localhost:3000/reset/</a>';
-              
-                        //Send email with password reset link
-              sendMail.send('Localhost',user.email,'Reset Password Link',text,html);
-              var myResponse = responseGenerator.generate(false,"Password reset link has been sent to your email!",200,null);
-              res.json(myResponse);
-            }
-          });
         }
       });
-    });    
-*/
+    });
+
+    userRouter.post('/delete/:email',function(req,res)
+    {
+      userModel.remove({'_id':req.params.email},function(err,result)
+      {
+        if(err){
+              var myResponse = responseGenerator.generate(true,"Could not delete this user! ",400,null);
+              res.json(myResponse);
+        }
+        else{
+              var myResponse = responseGenerator.generate(false,"User removed !",200,null);
+              res.json(myResponse);
+        }
+      });
+    });
+
     // this should be the last line
     // now making it global to app using a middleware
     // think of this as naming your api 

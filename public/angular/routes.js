@@ -12,7 +12,7 @@ myApp.config(['$routeProvider','$locationProvider', function($routeProvider,$loc
         })
 
         .when('/user/dashboard',{
-            templateUrl     : './views/dashboard-view4.html',
+            templateUrl     : './views/dashboard-view.html',
 
             controller      :  'dashboardCtrl',
 

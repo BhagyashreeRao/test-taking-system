@@ -205,6 +205,36 @@ height: 50px;
    background-color: #97ccf1;
 }
 
+.instructions{
+  width: 80%;
+  margin-top:3%;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 40px;
+  padding-bottom: 30px;
+  padding-left: 20px;
+  padding-right: 20px;
+  border: 1px solid black;
+  border-radius: 25px;
+  margin-bottom: 5vmax;
+
+}
+
+.test-screen{
+  margin-top: 5vh;
+  margin-bottom: 10vh;
+  width: 80%;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.test-menu{
+  background-color:  #dc4c4c;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  color: white;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(63, 63, 68, 0.1);
+}
 
 /*    font-family: 'Sedgwick Ave Display', cursive;
 
@@ -331,6 +361,16 @@ h1 .subtitle {
     padding-left: 20px;
 }
 
+.btn-custom{
+  background-color: white;
+  color:red;
+}
+.test-menu-section{
+  width:80%;
+  margin-right: 10%;
+  margin-left: 10%;
+  margin-bottom: 40vh;
+}
 .card .image {
     width: 100%;
     overflow: hidden;

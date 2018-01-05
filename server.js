@@ -36,17 +36,32 @@ app.use(cors({
 
 
 
-var dbPath  = "mongodb://bhagyashreerao:bhagyashree26@ds239387.mlab.com:39387/tester-db";
+/*var dbPath  = "mongodb://bhagyashreerao:bhagyashree26@ds239387.mlab.com:39387/tester-db";*/
+
+mongoose.connect("mongodb://bhagyashreerao:bhagyashree26@ds239387.mlab.com:39387/tester-db");
+
+var db = mongoose.connection;
+db.on('error', console.error.bind(console, '#MongoDB - connection error'));
+
+//Open mongoose connection
+mongoose.connection.once('open', function() {
+
+  console.log("Database Connected");
+
+});
+
+
+
 
 /*mongodb://bhagyashreerao:bhagyashree26@ds239387.mlab.com:39387/tester-db*/
 
 // command to connect with database
-db = mongoose.connect(dbPath);
+/*db = mongoose.connect(dbPath);
 
 mongoose.connection.once('open', function() {
 
 	console.log("database connection open success");
-});
+});*/
 
 var fs = require('fs');
 

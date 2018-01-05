@@ -1,48 +1,63 @@
-<div ng-if="!takeTest.started">
-<p>{{takeTest.test.topic}}</p>
-<hr>
-<p>1. This test is of {{takeTest.test.duration}} minutes. The test window will disappear if you do not submit the test within the given time. </p> 
-{{login.username}}
-{{login.email}}
-{{login.user_id}}
-<button class="btn btn-primary" ng-click="takeTest.startTest();">yes! go to test page!</button>
+<div ng-if="!takeTest.started" style="margin-top: 40px;">
+    <center><a ng-href="#/user/tests" style="font-size: 20px; color: #2FBBFF;"> &#8617; Back to dashboard</a>
+    </center>
+    <hr>
+    <div class="instructions">
+          <p style="font-size: 24px; font-weight: bolder; text-align: center">{{takeTest.test.topic}} test - Instuctions</p>
+
+          <hr>
+
+          <p>1. This test is of {{takeTest.test.duration}} minutes. The test window will disappear if you do not submit the test within the given time and your test will be submitted automatically.</p> 
+
+          <p>2. Each question consists of 4 questions and you have to mark the right one. </p>
+          <p>3. If you do not know the answer to a question, you can revisit the question later. </p>
+          <p>4. Each question consists of {{takeTest.test.marks_per_ques}} marks.</p>
+          <p>5. There is no negative marking for this test </p>
+          <p>6. To start the test, click on start test button. GOOD LUCK!</p> 
+          <br>
+          <br>
+          <center>
+          <button class="btn btn-danger btn-lg " ng-click="takeTest.startTest();">yes! go to test page!</button>
+          </center>
+    </div>
 </div>
+
 <div ng-if="takeTest.started">
-<div class="card container" style="padding: 5% 5% 5% 5%">
+    <div class="card container test-screen" style="padding: 5% 5% 5% 5%">
 
       <p id="time_left" >{{main.count}}</p>
 
-<p class="text-center">Question {{takeTest.currentPage+1}}</p>
-<hr>
-    <div ng-repeat="question in takeTest.test.questions | startFrom:takeTest.currentPage*takeTest.pageSize | limitTo:takeTest.pageSize">
-        <p>{{question.question_desc}}</p>
-        <label class="col-sm-6">
-          <input type="radio" ng-model="takeTest.answerArray[takeTest.currentPage].givenAnswer" value={{question.optA}} name="answer" ng-change='takeTest.calTime(takeTest.currentPage,question);takeTest.setDefault(takeTest.currentPage,1,2,3);' required >
-          {{question.optA}}
-        </label>
-        <label class="col-sm-6">
-          <input type="radio" ng-model="takeTest.answerArray[takeTest.currentPage].givenAnswer" ng-change='takeTest.calTime(takeTest.currentPage,question,count);takeTest.setDefault(takeTest.currentPage,0,2,3);' value={{question.optB}} name="answer">
-          {{question.optB}}
-        </label>
-        <label class="col-sm-6">
-          <input type="radio" ng-model="takeTest.answerArray[takeTest.currentPage].givenAnswer" ng-change='takeTest.calTime(takeTest.currentPage,question);takeTest.setDefault(takeTest.currentPage,0,1,3);' value={{question.optC}} name="answer">
-          {{question.optC}}
-        </label>
-        <label class="col-sm-6">
-          <input type="radio" ng-model="takeTest.answerArray[takeTest.currentPage].givenAnswer" ng-change='takeTest.calTime(takeTest.currentPage,question);takeTest.setDefault(takeTest.currentPage,0,1,2);' value={{question.optD}} name="answer">
-          {{question.optD}}
-        </label>                          
-    </div>
-    <div ng-if="takeTest.currentPage!=takeTest.test.number_of_ques-1">
-    <button ng-disabled="takeTest.currentPage == 0" ng-click="takeTest.currentPage=takeTest.currentPage-1">
-        Previous
-    </button>
-    {{takeTest.currentPage+1}}/{{takeTest.test.number_of_ques}}
-    <button ng-disabled="takeTest.currentPage >= takeTest.test.questions.length/takeTest.pageSize - 1" ng-click="takeTest.currentPage=takeTest.currentPage+1;takeTest.setFirstViewTime(takeTest.currentPage);">
-        Next
-    </button>
-    </div>
-    <div ng-if="takeTest.currentPage==takeTest.test.number_of_ques-1">
-        <button class="btn btn-info" ng-click="takeTest.submitTest();">Submit test</button>
-    </div>
+        <p class="text-center">Question {{takeTest.currentPage+1}}</p>
+        <hr>
+            <div class="row" ng-repeat="question in takeTest.test.questions | startFrom:takeTest.currentPage*takeTest.pageSize | limitTo:takeTest.pageSize">
+                <p>{{question.question_desc}}</p>
+                <label class="col-sm-10">
+                  <input type="radio" ng-model="takeTest.answerArray[takeTest.currentPage].givenAnswer" value={{question.optA}} name="answer" ng-change='takeTest.calTime(takeTest.currentPage,question);takeTest.setDefault(takeTest.currentPage,1,2,3);' required >
+                  {{question.optA}}
+                </label>
+                <label class="col-sm-10">
+                  <input type="radio" ng-model="takeTest.answerArray[takeTest.currentPage].givenAnswer" ng-change='takeTest.calTime(takeTest.currentPage,question,count);takeTest.setDefault(takeTest.currentPage,0,2,3);' value={{question.optB}} name="answer">
+                  {{question.optB}}
+                </label>
+                <label class="col-sm-10">
+                  <input type="radio" ng-model="takeTest.answerArray[takeTest.currentPage].givenAnswer" ng-change='takeTest.calTime(takeTest.currentPage,question);takeTest.setDefault(takeTest.currentPage,0,1,3);' value={{question.optC}} name="answer">
+                  {{question.optC}}
+                </label>
+                <label class="col-sm-10">
+                  <input type="radio" ng-model="takeTest.answerArray[takeTest.currentPage].givenAnswer" ng-change='takeTest.calTime(takeTest.currentPage,question);takeTest.setDefault(takeTest.currentPage,0,1,2);' value={{question.optD}} name="answer">
+                  {{question.optD}}
+                </label>                          
+            </div>
+            <div ng-if="takeTest.currentPage!=takeTest.test.number_of_ques-1" class="text-center">
+            <button ng-disabled="takeTest.currentPage == 0" ng-click="takeTest.currentPage=takeTest.currentPage-1">
+                Previous
+            </button>
+            {{takeTest.currentPage+1}}/{{takeTest.test.number_of_ques}}
+            <button ng-disabled="takeTest.currentPage >= takeTest.test.questions.length/takeTest.pageSize - 1" ng-click="takeTest.currentPage=takeTest.currentPage+1;takeTest.setFirstViewTime(takeTest.currentPage);">
+                Next
+            </button>
+            </div>
+            <div ng-if="takeTest.currentPage==takeTest.test.number_of_ques-1" class="text-center">
+                <button class="btn btn-info" ng-click="takeTest.submitTest();" ng-disabled="takeTest.isSubmitted">Submit test</button>
+            </div>
   </div>

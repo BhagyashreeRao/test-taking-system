@@ -39,6 +39,7 @@ module.exports=function(app,passport){
 		    clientID: '308757226282671',
 		    clientSecret: 'bdba027fe4aab20d11a446d546453acd',
 		    callbackURL: "https://my-tester-100.herokuapp.com/auth/facebook/callback",
+		    
 		    profileFields: ['id', 'displayName','email']
 
 		  },
@@ -54,9 +55,10 @@ module.exports=function(app,passport){
 
 					user = new User({
                 	email : profile._json.email,
-                	userName : profile._json.name
-            		});
+                	username : profile._json.name
 
+            		});
+					console.log(user);
 		            user.save(function(err,user){
 		                if(err) done(err);
 		                else done(null,user);

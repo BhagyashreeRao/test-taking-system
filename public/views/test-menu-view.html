@@ -1,17 +1,17 @@
-<div class="card container">
-	<p class="text-center"> Take a test </p>
+<div class="test-menu-section">
+	<p class="text-center" style="font-size: 30px; margin-top: 50px;"> Take a test </p>
 	<hr>
-	<div style="padding: 2% 2% 2% 2%;">
-    	<div class="card container-fluid" style="padding:10px 30px 10px 30px;" ng-repeat="test in dashboard.allTests">
-	        <div class="left">
-	            <p style="font-size: 20px;"> Topic : {{test.topic}}</p>
+	<div style="padding: 2% 2% 2% 2%;" class="container-fluid">
+    	<div class="test-menu row" style="padding:10px 30px 10px 30px;" ng-repeat="test in dashboard.allTests">
+	        <div class="col-sm-10" style="padding: 0;">
+	            <p style="font-size: 20px;">Topic : {{test.topic}}</p>
 	            <p style="margin-bottom: 0;">Category : {{test.category}}</p>
 	            <p style="margin-bottom: 0;">Questions: {{test.number_of_ques}}</p>
-	            <p style="margin-bottom: 0;">Duration : {{test.duration}}</p>
+	            <p style="margin-bottom: 0;">Duration : {{test.duration}} minutes</p>
 	        </div>    
-            <div class="right">
-                <button ng-click="dashboard.takeTest(login.user_id,test._id);" class="btn btn-primary">Take test</button>
+            <div class="col-sm-2 text-center" style="margin-top:40px;">
+                <button ng-click="dashboard.takeTest(login.user_id,test._id);" class="btn btn-lg btn-custom">Take test</button>
             </div>                                
         </div>    
     </div>
-</div
+</div>

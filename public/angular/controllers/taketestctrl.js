@@ -18,6 +18,7 @@ myApp.controller('takeTestCtrl',['$http', '$location', '$timeout','$scope','Test
       this.resultData       = {};
       this.started = false;
       var stopped;
+      this.isSubmitted=false;
 
         //service to get the test by ID         
         Test.getOneTest(main.test_id).then(function(data) {
@@ -87,7 +88,7 @@ myApp.controller('takeTestCtrl',['$http', '$location', '$timeout','$scope','Test
 
 
             main.submitTest=function(){
-              console.log("answer times");
+              main.isSubmitted=true;
               console.log(main.timeTakenAnswers);
               console.log(main.timeViewFirstAnswers);
             for(var i=0;i<main.test.number_of_ques;i++){

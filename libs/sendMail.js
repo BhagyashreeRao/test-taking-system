@@ -7,10 +7,10 @@ exports.send = function(from,to,subject,text,html){
 	   service: 'Gmail',
 	   auth: {
 		   //Enter email here
-	       user: 'kbhagyashree.rao@gmail.com',
+	       user: 'your gmail email',
 
 		   //Enter your password here
-	       pass: 'shreekrishna26'
+	       pass: 'your gmail password'
 	   }
 	}));
     //Send mail

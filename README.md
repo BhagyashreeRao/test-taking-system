@@ -1,4 +1,4 @@
-# MEAN Stack Application for a Ticket-based Support System
+# MEAN Stack Application for a Test-taking system
 Querize is a ticket-based support system developed for helping customers with their queries.It is a MEAN Stack Application which includes a User view as well as an Admin view.
 
 ## Features

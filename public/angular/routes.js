@@ -77,6 +77,13 @@ myApp.config(['$routeProvider','$locationProvider', function($routeProvider,$loc
             authenticated   :  true
         })
 
+        .when('/user/performance/:user_id',{
+            templateUrl     : './views/user-performance-view.html',
+            controller      : 'performanceCtrl',
+            controllerAs    : 'performance',
+            authenticated   :  true
+        })
+
         .when('/logout',{
             templateUrl     : './views/logout-view.html',
 

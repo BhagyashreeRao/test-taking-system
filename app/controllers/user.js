@@ -30,6 +30,21 @@ module.exports.controllerFunction = function(app) {
 
     });//end get all users
 
+    userRouter.get('/:user_id',function(req,res)
+    {
+      userModel.findOne({'_id':req.params.user_id},function(err,user)
+      {
+        if(err){
+              var myResponse = responseGenerator.generate(true,"Could not find user! ",400,null);
+              res.json(myResponse);
+        }
+        else{
+              var myResponse = responseGenerator.generate(false,"User found !",200,user);
+              res.json(myResponse);
+        }
+      });
+    });
+
 
     userRouter.post('/signup',function(req,res){
 
@@ -60,8 +75,8 @@ module.exports.controllerFunction = function(app) {
                    // res.send(myResponse);
                    
 
-                var token=jwt.sign({username:newUser.username,email:newUser.email},secret,{expiresIn:'24h'});
-                var myResponse = responseGenerator.generate(false,"User created successfully ! ",201,token);
+                var token=jwt.sign({username:user.username,email:user.email,user_id:user._id},secret,{expiresIn:'24h'});
+                var myResponse = responseGenerator.generate(false,"User authenticated ! ",201,token);
                 res.json(myResponse);
                 }
             });//end new user save
@@ -141,35 +156,7 @@ module.exports.controllerFunction = function(app) {
       
     });
 
-    userRouter.post('/delete/:userId',function(req,res)
-    {
-      userModel.remove({'_id':req.params.testId},function(err,result)
-      {
-        if(err){
-              var myResponse = responseGenerator.generate(true,"Could not delete this user! ",400,null);
-              res.json(myResponse);
-        }
-        else{
-              var myResponse = responseGenerator.generate(false,"User removed !",200,null);
-              res.json(myResponse);
-        }
-      });
-    });
 
-    userRouter.post('/delete/:email',function(req,res)
-    {
-      userModel.remove({'_id':req.params.email},function(err,result)
-      {
-        if(err){
-              var myResponse = responseGenerator.generate(true,"Could not delete this user! ",400,null);
-              res.json(myResponse);
-        }
-        else{
-              var myResponse = responseGenerator.generate(false,"User removed !",200,null);
-              res.json(myResponse);
-        }
-      });
-    });
 
     // this should be the last line
     // now making it global to app using a middleware

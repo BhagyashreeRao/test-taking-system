@@ -5,7 +5,10 @@
 </div>
 </header>
 <div class="about text-center custom-bg">
+<br>
   <p>Want to test yourself for your skills and want to show off your score? Well, you're at the right place. We have the bests test for all the domains, which are developed by the domain experts. We give you the detailed anaysis of the tests you give using graphs.So, let's get started!</p>
+<br>
+<br>
 <br>
 <br>
   <div class="row ">
@@ -120,36 +123,24 @@
 
           </form>
           <br>
-
           <div style="float-left">
             <a href="#/resetpassword">Forgot password?</a>
           </div>
+              <br>
 
-
-  <br>
-
-      <!-- Loading Icon -->
-      <div class="jumbotron text-center" ng-show="login.loading" style="margin-right: 3%; margin-left: 3%; background-color: gray;">
-          <span class="glyphicon glyphicon-repeat spinner"></span>
-          <p style="color: black;">Loading....</p>
-      </div>
-      <!-- Loading Icon -->
-
-<br>
-
-      <!-- Successful Registration Message -->
-      <div class="row show-hide-message" ng-show="login.successMsg" style="margin-right: 3%; margin-left: 3%">
-          <div class="alert alert-success">{{ login.successMsg }}</div>
-      </div>
-      <!-- Successful Registration Message -->
-
-      <br>
-
-      <!-- Failed Registration Message -->
-      <div class="row show-hide-message" ng-show="login.errorMsg" style="margin-right: 3%; margin-left: 3%">
-          <div class="alert alert-danger">{{ login.errorMsg }}</div>
-      </div>
-
+          <!-- Loading Icon -->
+              <div class="jumbotron text-center" ng-show="login.loading" style="margin-right: 3%; margin-left: 3%; background-color: gray;">
+                  <span class="glyphicon glyphicon-repeat spinner"></span>
+                  <p style="color: black;">Loading....</p>
+              </div>
+          <br>
+              <div class="row show-hide-message" ng-show="login.successMsg" style="margin-right: 3%; margin-left: 3%">
+                  <div class="alert alert-success">{{ login.successMsg }}</div>
+              </div>
+          <br>
+              <div class="row show-hide-message" ng-show="login.errorMsg" style="margin-right: 3%; margin-left: 3%">
+                  <div class="alert alert-danger">{{ login.errorMsg }}</div>
+              </div>
             </div>
           </div>
         </div>
@@ -158,19 +149,19 @@
       <div class="row text-center">
         <div class="col-md-12"><span>-------or-------</span></div>
           <div class="col-md-6 col-md-offset-3">
+          <br>
             Login with : 
-            <button class="btn btn-lg btn-success " ng-click="login.facebook();" >Facebook</button>
-            <button class="btn btn-lg btn-success" ng-click="login.google();" >Gmail</button>
-          </div>
+            <button class="btn-danger" ng-click="login.facebook();"><i class="fab fa-facebook fa-3x"></i></button>&nbsp;
 
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
+            <button class="btn-danger" ng-click="login.google();" ><i class="fab fa-google-plus-square fa-3x"></i></button>
+          </div>
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
         </div>
       </div>
-      
-      </div>
+    </div>

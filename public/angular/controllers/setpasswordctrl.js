@@ -3,6 +3,7 @@ myApp.controller('setPasswordCtrl',['$location', '$timeout', 'User', '$route','$
         var main = this;
         this.resetData={};
         console.log($routeParams.token);
+        this.submit=false;
 
         User.resetUser($routeParams.token).then(function(data){
             console.log(data);
@@ -23,6 +24,7 @@ myApp.controller('setPasswordCtrl',['$location', '$timeout', 'User', '$route','$
 
                     //main.allTests=data.data.data;
                     //console.log(main.allTests);
+                    main.submit=true;
                     console.log('password set');
                     $timeout(function(){
                         $location.path('/');
@@ -31,7 +33,7 @@ myApp.controller('setPasswordCtrl',['$location', '$timeout', 'User', '$route','$
                 } else {
                     main.loading = false; // Once data is retrieved, loading icon should be cleared
                     main.errorMsg = data.data.message; // Create an error message
-                    console.log('password not sent');
+                    console.log('password not set');
                 }
 
             });

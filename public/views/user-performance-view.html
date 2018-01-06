@@ -1,0 +1,108 @@
+  <center><a ng-href="#/user/dashboard" style="font-size: 20px; color: #2FBBFF; margin-top: 30px;" > &#8617; Back to dashboard</a></center>
+  <br>
+
+    <div class="card container text-center">
+        <h3 style="padding-top: 20px; border-bottom: 2px solid red; width:40% ; margin-right: auto;margin-left: auto;">{{performance.username}}'s  stats</h3>
+        <hr>
+
+      <div id="user-stats">
+        <div class="wow fadeIn">
+          <div class="row">
+            <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.2s">
+              <div class="box">
+                <div class="icon"><i class="fas fa-pencil-alt fa-2x"></i></div>
+                <!-- <h4 class="title"><a href=""></a></h4> -->
+                <h4 class="title">Tests taken</h4>
+                <p>{{performance.testsTaken}}</p>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.4s">
+            <div class="box">
+              <div class="icon"><i class="fas fa-percent fa-2x"></i> </div>
+              <h4 class="title">Average percentage</h4>
+              <p>{{performance.avgPercentage}}%</p>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.6s">
+            <div class="box">
+              <div class="icon"><i class="fas fa-clock fa-2x"></i>
+            </div>
+              <h4 class="title">Average time</h4>
+              <p>{{performance.avgTime}} minutes</p>
+
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.2s">
+            <div class="box">
+              <div class="icon"><i class="fas fa-ban fa-2x" ></i></div>
+              <h4 class="title">Unattempted Questions</h4>
+              <p>{{performance.unattempted}}</p>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.4s">
+            <div class="box">
+              <div class="icon"><i class="fas fa-thumbs-up fa-2x"></i></span></div>
+              <h4 class="title">Correct answers</h4>
+              <p>{{performance.correctAnswers}}</p>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.6s">
+            <div class="box">
+              <div class="icon"><i class="fas fa-thumbs-down fa-2x"></i></div>
+              <h4 class="title">Incorrect answers</h4>
+              <p>{{performance.incorrectAnswers}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+    </div>
+    <div ng-if="performance.testsTaken==0">
+      <p style="font-size: 25px;">You have not given any tests. To start a test, click on the button below.</p>
+    </div>
+
+    <div id="myTests" ng-if="performance.testsTaken!=0">
+    <center><p style="font-weight: bolder; font-size: 25px border-bottom: 2px solid red; width:40% ; margin-right: auto;margin-left: auto;">{{performance.username}}'s  Performance </p></center>
+    <hr style="width: 70%;">
+    </div> 
+    <canvas id="myChart"></canvas>  
+
+ 
+    <div id="myTests" ng-if="performance.testsTaken!=0">
+    <center><p style="font-weight: bolder; font-size: 25px; ">{{performance.username}}'s  tests </p></center>
+    <hr style="width: 70%;">
+      <table class="table table-striped text-center" id="test-table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Test name</th>
+            <th scope="col">Date</th>
+            <th scope="col">Marks</th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="result in performance.user_results| startFrom:performance.currentPage*performance.pageSize | limitTo:performance.pageSize">
+            <td>{{$index+1}}</td>
+            <td>{{result.test_name}}</td>
+            <td>{{result.createdAt| date : "MMM d, y 'at' h:mma"}}</td>
+            <td>{{result.marksScored}}/{{result.testScore}}</td>
+            <td><a  href="#/show-result/{{result._id}}">View result</a></td>
+          </tr>
+         
+        </tbody>
+      </table>
+      <center>  
+        <button ng-disabled="performance.currentPage == 0" ng-click="performance.currentPage=performance.currentPage-1">
+            Previous
+        </button>
+        {{performance.currentPage+1}}/{{performance.numberOfPages()}}
+        <button ng-disabled="performance.currentPage >= performance.user_results.length/performance.pageSize - 1" ng-click="performance.currentPage=performance.currentPage+1">
+            Next
+        </button>
+      </center>  
+    </div> 
+    <br>
+    <br>
+    <br>

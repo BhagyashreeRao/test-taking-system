@@ -116,6 +116,67 @@ module.exports.controllerFunction = function(app) {
         }
       });
     });
+
+    resetRouter.post('/delete/:userId',function(req,res)
+    {
+      userModel.remove({'_id':req.params.userId},function(err,result)
+      {
+        if(err){
+              var myResponse = responseGenerator.generate(true,"Could not delete this user! ",400,null);
+              res.json(myResponse);
+        }
+        else{
+              var myResponse = responseGenerator.generate(false,"User removed !",200,null);
+              res.json(myResponse);
+        }
+      });
+    });
+
+    resetRouter.post('/deleteByMail/:email',function(req,res)
+    {
+      userModel.remove({'email':req.params.email},function(err,result)
+      {
+        if(err){
+              var myResponse = responseGenerator.generate(true,"Could not delete this user! ",400,null);
+              res.json(myResponse);
+        }
+        else{
+              var myResponse = responseGenerator.generate(false,"User removed !",200,null);
+              res.json(myResponse);
+        }
+      });
+    });
+
+    resetRouter.post('/user/:user_id',function(req,res)
+    {
+      userModel.findOne({'_id':req.params.user_id},function(err,user)
+      {
+        if(err){
+              var myResponse = responseGenerator.generate(true,"Could not delete this user! ",400,null);
+              res.json(myResponse);
+        }
+        else{
+              var myResponse = responseGenerator.generate(false,"User found !",200,user);
+              res.json(myResponse);
+        }
+      });
+    });
+
+
+    resetRouter.post('/delete/all',function(req,res)
+    {
+      userModel.remove({},function(err,result)
+      {
+        if(err){
+              var myResponse = responseGenerator.generate(true,"Could not delete this user! ",400,null);
+              res.json(myResponse);
+        }
+        else{
+              var myResponse = responseGenerator.generate(false,"User removed !",200,null);
+              res.json(myResponse);
+        }
+      });
+    });
     // this should be the last line
     // now making it global to app using a middleware
     // think of this as naming your api 

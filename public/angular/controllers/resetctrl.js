@@ -4,8 +4,10 @@ myApp.controller('resetCtrl',['$location', '$timeout', 'User', '$route', functio
           this.resetData = {};
             main.loading = true; // To activate spinning loading icon w/bootstrap
             main.errorMsg = false; // Clear error message each time the user presses submit
-            
+            $('.modal-backdrop').remove();
+            main.submit=false;
             // Initiate service to save the user into the dabase 
+
         this.requestPasswordReset = function(){ 
             console.log("reset");      
             console.log(main.resetData);   
@@ -17,6 +19,7 @@ myApp.controller('resetCtrl',['$location', '$timeout', 'User', '$route', functio
 
                     //main.allTests=data.data.data;
                     //console.log(main.allTests);
+                    main.submit=true;
                     console.log('link sent');
                 } else {
                     main.loading = false; // Once data is retrieved, loading icon should be cleared

@@ -6,6 +6,7 @@ myApp.factory('User', function($http,AuthToken) {
 			//return $http.post('/user/signup', userData); // Return data from end point to controller
 				return $http.post('/user/signup', userData).then(function(data){
 				AuthToken.setToken(data.data.data);
+				console.log(token);
 				return data;
 			}); // Return data from end point to controller
 		};
@@ -23,6 +24,16 @@ myApp.factory('User', function($http,AuthToken) {
 		userFactory.saveNewPassword = function(resetData){
 			return $http.put('/reset/savePassword',resetData);
 		};
+
+		userFactory.getAllUsers = function(){
+			return $http.get('/user/all');
+		};		
+
+		userFactory.getUserById = function(user_id){
+			return $http.get('/user/'+user_id);
+		};		
+
+
 /*		testFactory.editTest = function(test_id,updatedTest){
 			return $http.post('/test/edit/'+test_id,updatedTest);
 		};*/

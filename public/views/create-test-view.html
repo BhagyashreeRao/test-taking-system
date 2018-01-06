@@ -2,28 +2,28 @@
 <center><a ng-href="#/user/dashboard" style="font-size: 20px; color: #2FBBFF;"> &#8617; Back to dashboard</a></center>
 <hr> 
 <div class="post-section card container-fluid">
-  <div class="row">
+  <div class="row" >
     <center><h2 class="wow lightSpeedIn" data-wow-delay="0.4s">Create a test</h2></center>
     <br>
-      <form class="form-horizontal wow lightSpeedIn" data-wow-delay="1s" ng-submit="test.postTest(testData)">
+      <form class="form-horizontal test-form wow lightSpeedIn" data-wow-delay="1s" ng-submit="test.postTest(testData)">
         <div class="form-group">
           <label class="control-label col-sm-2" for="topic">Topic:</label>
           <div class="col-sm-10">
-            <input type="text" class="form-control" id="topic" placeholder="Enter title " name="topic" ng-model="test.testData.topic">
+            <input type="text" class="form-control" id="topic" placeholder="Enter title " name="topic" ng-model="test.testData.topic" required>
           </div>
         </div>
         <div class="form-group">
           <label class="control-label col-sm-2" for="category">Category:</label>
           <div class="col-sm-10">          
-            <input type="text" class="form-control" id="category" placeholder="Enter Category" name="category" ng-model="test.testData.category"></input>
+            <input type="text" class="form-control" id="category" placeholder="Enter Category" name="category" ng-model="test.testData.category" required></input>
           </div>
         </div>
         <div class="form-group">
           <label class="control-label col-sm-2" for="duration">Duration:</label>
           <div class="col-sm-3">          
-            <input type="number" class="form-control" id="duration" placeholder="Enter duration of your test" name="duration" ng-model="test.testData.duration" aria-describedby="minutes"></input>
+            <input type="number" class="form-control" id="duration" placeholder="Enter duration of your test" name="duration" ng-model="test.testData.duration" aria-describedby="minutes" required></input>
           </div>
-            <span id="minutes" class="text-muted" style="margin-top: 20px;">
+            <span id="minutes" class="text-muted" style="margin-top: 20px;"">
               in minutes
             </span>
         </div>
@@ -31,7 +31,7 @@
         <div class="form-group">
           <label class="control-label col-sm-2" for="marks">Marks per question:</label>
           <div class="col-sm-3">          
-            <input type="number" class="form-control" id="marks" placeholder="Enter marks per question" name="marks" ng-model="test.testData.marks_per_question"></input>
+            <input type="number" class="form-control" id="marks" placeholder="Enter marks per question" name="marks" ng-model="test.testData.marks_per_question" required></input>
           </div>
         </div>
         
@@ -39,7 +39,7 @@
         <br>
         <div class="form-group">        
           <div class="text-center">
-            <button type="submit" class="btn">Done!</button>          
+            <button type="submit" class="btn btn-lg btn-danger">Done!</button>          
           </div>
         </div>
       </form>

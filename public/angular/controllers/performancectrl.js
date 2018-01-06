@@ -1,4 +1,4 @@
-myApp.controller('dashboardCtrl',['$location', '$timeout', 'Test','Auth','User' ,'$route','$scope', function($location, $timeout, Test,Auth,User ,$route,$scope) {
+myApp.controller('performanceCtrl',['$location', '$timeout', 'Test','Auth','User' ,'$route','$scope','$routeParams', function($location, $timeout, Test,Auth,User ,$route,$scope,$routeParams) {
  
           var main = this;
           this.allTests=[];
@@ -17,12 +17,12 @@ myApp.controller('dashboardCtrl',['$location', '$timeout', 'Test','Auth','User' 
           this.percentages=[];
           this.colors=[];
           this.users=[];
+          this.username='';
           this.currentPage = 0;
           this.pageSize = 20;
-          this.isAdmin=false;
 
-          var stopped;
 
+        
             this.getRandomColor = function() {
                 var letters = '0123456789ABCDEF';
                 var color = '#';
@@ -32,24 +32,15 @@ myApp.controller('dashboardCtrl',['$location', '$timeout', 'Test','Auth','User' 
                 return color;
             };
 
-          User.getAllUsers().then(function(data){
-          
-            for (var i in data.data)
-            {
-              if(data.data[i].username!='admin'&& data.data[i].username!='ADMIN')
-              {
-                main.users.push(data.data[i]);
-              }
-            }
-            console.log(main.users);
-          });  
-          Auth.getUser().then(function(data){
-            console.log(data);
-            main.user.user_id=data.data.user_id;
-            if(data.data.username=='ADMIN'||data.data.username=='admin')
-            {
-              main.isAdmin=true;
-            }
+
+            main.user.user_id=$routeParams.user_id;
+
+            User.getUserById($routeParams.user_id).then(function(data){
+                console.log(data);
+                main.username=data.data.data.username;
+                console.log(main.username);
+            });
+
             Test.getUserStats(main.user).then(function(stats){
                 console.log(stats.data.data);
                 main.user_results=stats.data.data;
@@ -92,9 +83,9 @@ myApp.controller('dashboardCtrl',['$location', '$timeout', 'Test','Auth','User' 
                 console.log(main.avgTime);
 
             });
-          });
+       
 
-            // Initiate service to save the user into the dabase            
+               
             Test.getAllTests().then(function(data) {
               
                 if (!data.data.error) {

@@ -1,4 +1,3 @@
-
 myApp.controller('mainCtrl',['$http', '$location', '$timeout', 'User', '$route','$scope', function($http, $location, $timeout, User, $route,$scope) {
  
           var main = this;
@@ -34,18 +33,16 @@ myApp.controller('mainCtrl',['$http', '$location', '$timeout', 'User', '$route',
         };
 
             this.hideModal = function(){
-
-            console.log($scope);
-            main.reset($scope.signupForm,"signupForm");
-
+                console.log($scope);
+                main.reset($scope.signupForm,"signupForm");
             };
             //function to reset modal form
             this.reset=function(form,name){
-            document.getElementById(name).reset();
-            form.$setPristine();
-            main.userData={};
-            form.$setUntouched();
-            form.$submitted = false;
+                document.getElementById(name).reset();
+                form.$setPristine();
+                main.userData={};
+                form.$setUntouched();
+                form.$submitted = false;
         };
 
 }]);

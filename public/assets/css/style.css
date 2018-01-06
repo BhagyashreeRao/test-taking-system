@@ -21,6 +21,19 @@ body{
   font-size: 30px !important; 
   text-align: center;
 }
+.test-form{
+  width: 80%;
+  margin-left:auto;
+  margin-right: auto;
+  padding-left: 5%;
+  padding-right: 5%;
+  border:1px solid red;
+  border-radius: 10px;
+  padding-top: 5%;
+  padding-bottom: 5%;
+
+}
+
 
 .navbar .navbar-right>li>a ,a:hover{
 height: 50px;
@@ -85,6 +98,38 @@ height: 50px;
   margin-top: 40px;
 }
 
+.set-password{
+
+ width: 80%;
+ margin-left: auto;
+ margin-right: auto;
+ margin-bottom: 50vh; 
+ padding-top: 20vh;
+}
+.reset-form{
+
+ width: 80%;
+ margin-left: auto;
+ margin-right: auto;
+ margin-bottom: 50vh; 
+ padding-top: 20vh;
+ padding-left: 10%;
+ padding-right: 10%;
+}
+
+#resetForm{
+  border: 1px solid gray;
+  border-radius: 15px;
+  padding: 10% 10% 10% 10%;
+}
+#setPasswordForm{
+  width: 70%;
+  margin-right: auto;
+  margin-left: auto;
+  border: 1px solid gray;
+  border-radius: 15px;
+  padding: 10% 10% 10% 10%;
+}
 .icon-bar{
   color:white;
 }
@@ -142,7 +187,7 @@ height: 50px;
   display: inline-block;
   background:  #97ccf1;
   border: 2px solid #dc4c4c;
-  padding: 15px;
+  padding: 10px;
   border-radius: 50%;
   transition: 0.3s;
 }
@@ -154,6 +199,7 @@ height: 50px;
 
 #user-stats .box:hover .icon i {
   color: #dc4c4c;
+  
 }
 
 #user-stats .box:hover .icon a {
@@ -205,6 +251,31 @@ height: 50px;
    background-color: #97ccf1;
 }
 
+.left {
+  float: left;
+  width: 700px;
+  text-align: left;
+  /*margin: 2px 10px 10px;*/
+  display: inline
+}
+.right {
+  margin-top: 20px;
+  float: right;
+  text-align: left;
+  width:120px;
+  margin-right: 20px;
+  /*margin: 2px 10px 10px;*/
+  display: inline
+}
+.break{    
+    width:70vw;
+    word-wrap: break-word;
+}
+
+.admin-section{
+ margin-left: 5%;
+ margin-right: 5%; 
+}
 .instructions{
   width: 80%;
   margin-top:3%;
@@ -373,7 +444,7 @@ h1 .subtitle {
 }
 .card .image {
     width: 100%;
-    overflow: hidden;
+    
     height: 260px;
     border-radius: 4px 4px 0 0;
     position: relative;
@@ -457,7 +528,6 @@ h1 .subtitle {
 .card .avatar {
     width: 30px;
     height: 30px;
-    overflow: hidden;
     border-radius: 50%;
     margin-right: 5px;
 }

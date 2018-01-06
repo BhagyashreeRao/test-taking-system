@@ -11,11 +11,9 @@
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
         <li class="active"><a href="#/user/dashboard">Dashboard</a></li>
-        <li><a href="#">Page 2</a></li>
-
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <!-- <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li> -->
+
         <li>    
         <a href="" ng-click="login.logout();">
         <p>Log out</p>
@@ -24,35 +22,74 @@
     </div>
   </div>
 </nav>
-<div ng-if="login.isAdmin==true" style="margin-top: 100px;">
-        <div class="content">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="card" style="padding: 2% 2% 2% 2%;">
-                            <div class="card container-fluid" style="padding:10px 30px 10px 30px;" ng-repeat="test in dashboard.allTests">
-                            <div class="left">
-                                <p style="font-size: 20px;">Topic : {{test.topic}}</p>
-                                <p style="margin-bottom: 0;">Category : {{test.category}}</p>
-                                <p style="margin-bottom: 0;">Questions: {{test.number_of_ques}}</p>
-                                <p style="margin-bottom: 0;">Duration : {{test.duration}}</p>
-                            </div>    
-                                <div class="right">
-                                    <a ng-href="/test/{{test._id}}" class="btn btn-primary">View test</a>
-                                </div>                                
-                            </div>    
-                            <div class="text-center">
-                            <a ng-href="#/test/create" class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span>Add new test</a>
-                            </div>
+<div ng-if="dashboard.isAdmin==true" style="margin-top: 100px;" class="admin-section" ng-cloak>
+    <div class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <h3 class="text-center" style="border-bottom: 2px solid red; width:40% ; margin-right: auto;margin-left: auto;" >All tests</h3>
+                    <div class="card" style="padding: 2% 2% 2% 2%;">
+                        <div class="card container-fluid" style="padding:10px 30px 10px 30px;" ng-repeat="test in dashboard.allTests | startFrom:dashboard.currentPage*dashboard.pageSize | limitTo:dashboard.pageSize"">
+                        <div class="left">
+                            <p style="font-size: 20px;">Topic : {{test.topic}}</p>
+                            <p style="margin-bottom: 0;">Category : {{test.category}}</p>
+                            <p style="margin-bottom: 0;">Questions: {{test.number_of_ques}}</p>
+                            <p style="margin-bottom: 0;">Duration : {{test.duration}}</p>
+                        </div>    
+                            <div class="right">
+                                <a ng-href="#/test/{{test._id}}" class="btn btn-danger">View test</a>
+                            </div>                                
+                        </div>    
+                        <br>
+                       <center>  
+                          <button ng-disabled="dashboard.currentPage == 0" ng-click="dashboard.currentPage=dashboard.currentPage-1">
+                              Previous
+                          </button>
+                          {{dashboard.currentPage+1}}/{{dashboard.numberOfTests()}}
+                          <button ng-disabled="dashboard.currentPage >= dashboard.allTests.length/dashboard.pageSize - 1" ng-click="dashboard.currentPage=dashboard.currentPage+1">
+                              Next
+                          </button>
+                        </center>
+                        <br>
+                        <div class="text-center">
+                            <a ng-href="#/test/create" class="btn btn-danger"><span class="glyphicon glyphicon-plus"></span>Add new test</a>
                         </div>
                     </div>
-                </div> 
-            </div>
-        </div> 
+                </div>
+                <br>
+                <br>
+                <div class="col-md-12">
+                    <h3 class="text-center" style="border-bottom: 2px solid red; width:40% ; margin-right: auto;margin-left: auto;">All users</h3>
+                    <div class="card" style="padding: 2% 2% 2% 2%;">
+                        <div class="card container-fluid" style="padding:10px 30px 10px 30px;"  ng-repeat="user in dashboard.users | startFrom:dashboard.currentPage*dashboard.pageSize | limitTo:dashboard.pageSize">
+                        <div class="left">
+                            <p style="font-size: 20px;"> {{user.username}}</p>
+                            <p style="margin-bottom: 0;">Email : {{user.email}}</p>
+                            <p style="margin-bottom: 0;">Contact number : {{user.mobilenumber}}</p>
+                            
+                        </div>    
+                        <div class="right">
+                            <a ng-href="#/user/performance/{{user._id}}" class="btn btn-danger">View Performance</a>
+                        </div>                                 
+                      </div> 
+                        <center>  
+                          <button ng-disabled="dashboard.currentPage == 0" ng-click="dashboard.currentPage=dashboard.currentPage-1">
+                              Previous
+                          </button>
+                          {{dashboard.currentPage+1}}/{{dashboard.numberOfUsers()}}
+                          <button ng-disabled="dashboard.currentPage >= dashboard.users.length/dashboard.pageSize - 1" ng-click="dashboard.currentPage=dashboard.currentPage+1">
+                              Next
+                          </button>
+                        </center>
+                    </div>
+                </div>
+            </div> 
+        </div>
+    </div> 
 </div>
-<div ng-if="login.isAdmin==false" class="user-dashboard-section">
+<div ng-if="dashboard.isAdmin==false" class="user-dashboard-section" ng-cloak>
     <div class="card container text-center">
-        <h3 style="padding-top: 20px;">My stats</h3>
+        <h3 style="padding-top: 20px; border-bottom: 2px solid red; width:40% ; margin-right: auto;margin-left: auto;">My stats</h3>
         <hr>
 
       <div id="user-stats">
@@ -60,28 +97,22 @@
           <div class="row">
             <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.2s">
               <div class="box">
-                <div class="icon"><span class="glyphicon glyphicon-pencil"></span></div>
+                <div class="icon"><i class="fas fa-pencil-alt fa-2x"></i> </div>
                 <!-- <h4 class="title"><a href=""></a></h4> -->
                 <h4 class="title">Tests taken</h4>
-             
                 <p>{{dashboard.testsTaken}}</p>
-                
-
             </div>
           </div>
-
           <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.4s">
             <div class="box">
-              <div class="icon"></div>
+              <div class="icon"><i class="fas fa-percent fa-2x"></i> </div>
               <h4 class="title">Average percentage</h4>
               <p>{{dashboard.avgPercentage}}%</p>
-
             </div>
           </div>
           <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.6s">
             <div class="box">
-              <div class="icon"><span class="glyphicon glyphicon-time"></span>
-
+              <div class="icon"><i class="fas fa-clock fa-2x"></i> 
             </div>
               <h4 class="title">Average time</h4>
               <p>{{dashboard.avgTime}} minutes</p>
@@ -91,34 +122,41 @@
 
           <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.2s">
             <div class="box">
-              <div class="icon"><i class="fa fa-ticket"></i></div>
+              <div class="icon"><i class="fas fa-ban fa-2x"></i></div>
               <h4 class="title">Unattempted Questions</h4>
               <p>{{dashboard.unattempted}}</p>
             </div>
           </div>
           <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.4s">
             <div class="box">
-              <div class="icon"><span class="glyphicon glyphicon-ok"></span></div>
+              <div class="icon"><i class="far fa-thumbs-up fa-2x" ></i></div>
               <h4 class="title">Correct answers</h4>
               <p>{{dashboard.correctAnswers}}</p>
             </div>
           </div>
           <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.6s">
             <div class="box">
-              <div class="icon"><span class="glyphicon glyphicon-remove"></span></div>
+              <div class="icon"><i class="far fa-thumbs-down fa-2x"></i></div>
               <h4 class="title">Incorrect answers</h4>
               <p>{{dashboard.incorrectAnswers}}</p>
             </div>
           </div>
-
         </div>
-
       </div>
       </div>
     </div>
-    <canvas id="myChart"></canvas>
+    <div ng-if="dashboard.testsTaken==0">
+      <p style="font-size: 25px;">You have not given any tests. To start a test, click on the button below.</p>
+    </div>
 
-    <div id="myTests">
+    <div id="myTests" ng-if="dashboard.testsTaken!=0">
+    <center><p style="font-weight: bolder; font-size: 25px border-bottom: 2px solid red; width:40% ; margin-right: auto;margin-left: auto;">My Performance </p></center>
+    <hr style="width: 70%;">
+    </div> 
+    <canvas id="myChart"></canvas>  
+
+ 
+    <div id="myTests" ng-if="dashboard.testsTaken!=0">
     <center><p style="font-weight: bolder; font-size: 25px; ">My tests </p></center>
     <hr style="width: 70%;">
       <table class="table table-striped text-center" id="test-table">
@@ -132,7 +170,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr ng-repeat="result in dashboard.user_results">
+          <tr ng-repeat="result in dashboard.user_results| startFrom:dashboard.currentPage*dashboard.pageSize | limitTo:dashboard.pageSize">
             <td>{{$index+1}}</td>
             <td>{{result.test_name}}</td>
             <td>{{result.createdAt| date : "MMM d, y 'at' h:mma"}}</td>
@@ -142,8 +180,17 @@
          
         </tbody>
       </table>
-      <hr style="width: 70%;">
-      <center><a class="btn btn-danger btn-lg btn-block" ng-href="#/user/tests" style="width: 50%;">Take a test</a></center>
-    </div>   
+      <center>  
+        <button ng-disabled="dashboard.currentPage == 0" ng-click="dashboard.currentPage=dashboard.currentPage-1">
+            Previous
+        </button>
+        {{dashboard.currentPage+1}}/{{dashboard.numberOfPages()}}
+        <button ng-disabled="dashboard.currentPage >= dashboard.user_results.length/dashboard.pageSize - 1" ng-click="dashboard.currentPage=dashboard.currentPage+1">
+            Next
+        </button>
+      </center>  
+    </div> 
+          <hr style="width: 70%;">
+      <center><a class="btn btn-danger btn-lg btn-block" ng-href="#/user/tests" style="width: 50%;">Take a test</a></center>  
     <!-- <a class="btn btn-primary" ng-href="#/user/tests">Take a test</a> -->
 </div>

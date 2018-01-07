@@ -3,7 +3,7 @@
 Tester is an online Test Taking System for users to test their skills and get live results along with graphs. It is a MEAN Stack Application including views for both user and admin.
 
 ## Application url
-  http://my-tester-100.herokuapp.com/#/user/dashboard
+  http://my-tester-100.herokuapp.com
 
 ## Features
 

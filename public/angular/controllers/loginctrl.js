@@ -104,4 +104,11 @@ myApp.controller('loginCtrl',['$http', '$location','$rootScope', '$timeout', 'Au
         		$location.path('/');
         	},2000);
         };
+
+    toastr.options = {
+      "positionClass": "toast-top-center",
+      "showMethod": "show",
+      "hideMethod": "hide"
+    };
+
 }]);

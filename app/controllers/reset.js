@@ -147,22 +147,6 @@ module.exports.controllerFunction = function(app) {
       });
     });
 
-    resetRouter.post('/user/:user_id',function(req,res)
-    {
-      userModel.findOne({'_id':req.params.user_id},function(err,user)
-      {
-        if(err){
-              var myResponse = responseGenerator.generate(true,"Could not delete this user! ",400,null);
-              res.json(myResponse);
-        }
-        else{
-              var myResponse = responseGenerator.generate(false,"User found !",200,user);
-              res.json(myResponse);
-        }
-      });
-    });
-
-
     resetRouter.post('/delete/all',function(req,res)
     {
       userModel.remove({},function(err,result)

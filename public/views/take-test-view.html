@@ -25,10 +25,13 @@
 <div ng-if="takeTest.started">
     <div class="card container test-screen" style="padding: 5% 5% 5% 5%">
 
+    <p style="font-size: 25px; font-weight: bolder;" class="text-center">{{takeTest.test.topic}}</p>
+     <hr>
+
       <p id="time_left" >{{main.count}}</p>
 
         <p class="text-center">Question {{takeTest.currentPage+1}}</p>
-        <hr>
+       
             <div class="row" ng-repeat="question in takeTest.test.questions | startFrom:takeTest.currentPage*takeTest.pageSize | limitTo:takeTest.pageSize">
             
                 <p>{{question.question_desc}}</p>

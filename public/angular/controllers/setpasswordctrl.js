@@ -26,6 +26,7 @@ myApp.controller('setPasswordCtrl',['$location', '$timeout', 'User', '$route','$
                     //console.log(main.allTests);
                     main.submit=true;
                     console.log('password set');
+                    toastr.success('Your email has been reset sucessfully');
                     $timeout(function(){
                         $location.path('/');
                         $('#modalLoginForm').modal('show');
@@ -33,6 +34,7 @@ myApp.controller('setPasswordCtrl',['$location', '$timeout', 'User', '$route','$
                 } else {
                     main.loading = false; // Once data is retrieved, loading icon should be cleared
                     main.errorMsg = data.data.message; // Create an error message
+                    toastr.error('Could not reset password');
                     console.log('password not set');
                 }
 

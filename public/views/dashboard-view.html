@@ -145,16 +145,17 @@
       </div>
       </div>
     </div>
-    <div ng-if="dashboard.testsTaken==0">
+    <div ng-if="dashboard.testsTaken==0" style="width: 90%; margin-left: auto;margin-right: auto;">
       <p style="font-size: 25px;">You have not given any tests. To start a test, click on the button below.</p>
     </div>
-
+    <div style="width: 90%; margin-left: auto;margin-right: auto;">
     <div id="myTests" ng-if="dashboard.testsTaken!=0">
     <center><p style="font-weight: bolder; font-size: 25px border-bottom: 2px solid red; width:40% ; margin-right: auto;margin-left: auto;">My Performance </p></center>
     <hr style="width: 70%;">
     </div> 
     <canvas id="myChart"></canvas>  
 
+    </div>
  
     <div id="myTests" ng-if="dashboard.testsTaken!=0">
     <center><p style="font-weight: bolder; font-size: 25px; ">My tests </p></center>

@@ -20,11 +20,13 @@ myApp.controller('resetCtrl',['$location', '$timeout', 'User', '$route', functio
                     //main.allTests=data.data.data;
                     //console.log(main.allTests);
                     main.submit=true;
-                    console.log('link sent');
+                    
+                    toastr.success('The reset link has been sent to your email! Please check your email.');
                 } else {
                     main.loading = false; // Once data is retrieved, loading icon should be cleared
                     main.errorMsg = data.data.message; // Create an error message
-                    console.log('link not sent');
+                    
+                    toastr.error('The email is not valid');
                 }
 
             });

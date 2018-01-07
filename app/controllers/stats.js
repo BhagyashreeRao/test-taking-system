@@ -69,6 +69,22 @@ module.exports.controllerFunction = function(app) {
         });//end test model find 
 
     });//end get all test
+    
+
+    statsRouter.post('/delete/all',function(req,res)
+    {
+      resultModel.remove({},function(err,results)
+      {
+        if(err){
+              var myResponse = responseGenerator.generate(true,"Could not delete ! ",400,null);
+              res.json(myResponse);
+        }
+        else{
+              var myResponse = responseGenerator.generate(false,"Results are deleted !",200,null);
+              res.json(myResponse);
+        }
+      });
+    });
 
     // this should be the last line
     // now making it global to app using a middleware
